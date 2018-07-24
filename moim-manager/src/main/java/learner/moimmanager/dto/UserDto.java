@@ -5,29 +5,29 @@ import learner.moimmanager.domain.User;
 public class UserDto {
 
     private String name;
-    private String nickName;
+    private String nickname;
     private String password;
     private String email;
 
     public UserDto() {
     }
 
-    public UserDto(String name, String nickName, String password, String email) {
+    public UserDto(String name, String nickname, String password, String email) {
         this.name = name;
-        this.nickName = nickName;
+        this.nickname = nickname;
         this.password = password;
         this.email = email;
     }
 
     public User toUser() {
-        return new User(name, nickName, password, email);
+        return new User(name, nickname, password, email);
     }
 
     @Override
     public String toString() {
         return "UserDto{" +
                 "name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
@@ -41,12 +41,12 @@ public class UserDto {
         this.name = name;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
