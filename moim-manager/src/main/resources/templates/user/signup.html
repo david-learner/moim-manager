@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+{{> common/header}}
+<body>
+{{> common/navbar}}
+<div class="container">
+    <div class="d-flex justify-content-center p-3">
+        <form>
+            <div class="text-center"><h2>회원가입</h2></div>
+            <div class="p-2">
+                <div>이름</div>
+                <div><input type="text" id="name"></div>
+            </div>
+            <div class="p-2">
+                <div>닉네임(별명)</div>
+                <div><input type="text" id="nickname"></div>
+            </div>
+            <div class="p-2">
+                <div>이메일</div>
+                <div><input type="text" id="email"></div>
+            </div>
+            <div class="p-2">
+                <div>비밀번호</div>
+                <div><input type="password" id="password"></div>
+                <div>비밀번호 확인</div>
+                <div><input type="password" id="passwordCheck" disabled></div>
+            </div>
+            <div class="p-2 text-center">
+                <button type="submit" class="btn bg-yellow text-purple">회원가입</button>
+            </div>
+        </form>
+    </div>
+</div>
+{{> common/footer}}
+</body>
+</html>
