@@ -9,5 +9,8 @@
         <module name="moim-manager" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="moim-manager" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
