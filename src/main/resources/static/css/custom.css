@@ -1,0 +1,28 @@
+@font-face { font-family: 'NanumBarunGothic';
+    src: url('/fonts/NanumBarunGothic.eot');
+    src: url('/fonts/NanumBarunGothic.eot') format('embedded-opentype'),
+    url('/fonts/NanumBarunGothic.woff') format('woff');}
+
+* {font-family: 'NanumBarunGothic', 'serif';}
+
+.carousel-inner > .carousel-item > img {
+    margin : 0 auto;
+    max-width: 800px;
+    /*max-height: 400px;*/
+}
+
+/* color theme */
+.text-purple {
+    color: #6d3afb !important;
+}
+
+.text-yellow {
+    color: #ffd014 !important;
+}
+
+.bg-purple {
+    background-color: #6d3afb !important;
+}
+.bg-yellow {
+    background-color: #ffd014 !important;
+}
