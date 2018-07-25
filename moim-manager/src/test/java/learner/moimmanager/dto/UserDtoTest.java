@@ -11,5 +11,4 @@ public class UserDtoTest {
         UserDto userDto = new UserDto();
         assertNull(userDto.getName());
     }
-
 }

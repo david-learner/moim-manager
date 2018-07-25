@@ -11,3 +11,19 @@
 ## Feature
 * 벌금 관리
 * 출석 및 과제 제출 관리
+
+## 구성
+### User
+1. 모임장
+    * main - 1명
+    
+        * 해당 모임의 리더
+        * 소모임장을 지명할 수 있다
+        
+    * sub - n명
+    
+        * 총무, 회계 등 모임장을 돕는 헬퍼.
+        
+2. 모임원
+
+![hierarchy](readmeImages/hierarchy.png)
