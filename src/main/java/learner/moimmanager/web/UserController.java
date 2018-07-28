@@ -17,7 +17,7 @@ public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Resource(name = "userService")
-    UserService userService;
+    private UserService userService;
 
     @PostMapping()
     public String signUp(UserDto userDto) {
@@ -29,5 +29,11 @@ public class UserController {
     @GetMapping("/form")
     public String signUpForm() {
         return "/user/signup";
+    }
+
+    @PostMapping("/login")
+    public String login(UserDto userDto) {
+        userService.login(userDto);
+        return "redirect:/";
     }
 }

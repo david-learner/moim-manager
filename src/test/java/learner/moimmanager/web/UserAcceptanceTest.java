@@ -39,7 +39,13 @@ public class UserAcceptanceTest {
 
         ResponseEntity<String> response = template.postForEntity("/users", request, String.class);
         assertThat(response.getStatusCode(),is(HttpStatus.FOUND));
+    }
 
+    @Test
+    public void login() {
+        TestRestTemplate authTemplate = template.withBasicAuth("hard@learner.com", "hardlearner");
+        ResponseEntity<String> response = authTemplate.getForEntity("/", String.class);
+        assertThat(response.getBody().contains("로그아웃"), is(true));
     }
 }
 
