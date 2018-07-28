@@ -1,5 +1,7 @@
 package learner.moimmanager.domain;
 
+import learner.moimmanager.dto.LoginUserDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -45,5 +47,20 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public boolean match(LoginUserDto loginUserDto) {
+        if (!this.email.equals(loginUserDto.getId())) {
+            // todo id, pw 일치하지 않는 예외 만들기
+            throw new IllegalArgumentException("id가 일치하지 않습니다.");
+        }
+
+        // todo Bcryt 사용하여 pw 비교하기
+        if (!this.password.equals(loginUserDto.getPassword())) {
+            // todo id, pw 일치하지 않는 예외 만들기
+            throw new IllegalArgumentException("pw가 일치하지 않습니다.");
+        }
+
+        return true;
     }
 }

@@ -2,8 +2,8 @@ package learner.moimmanager.domain;
 
 import org.junit.Test;
 
-import javax.validation.constraints.Null;
-
+import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_USER;
+import static learner.moimmanager.support.test.DummyData.DEFAULT_LOGIN_USER_DTO;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -14,5 +14,10 @@ public class UserTest {
     public void create() {
         User guest = new User();
         assertNull(guest.getName());
+    }
+
+    @Test
+    public void match() {
+        assertThat(DEFAULT_DB_USER.match(DEFAULT_LOGIN_USER_DTO), is(true));
     }
 }
