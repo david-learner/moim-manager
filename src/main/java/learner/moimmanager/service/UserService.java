@@ -20,9 +20,9 @@ public class UserService {
 
     public User login(LoginUserDto loginUserDto) {
         User dbUser = userRepository.findByEmail(loginUserDto.getEmail()).orElseThrow(NullPointerException::new);
-        if(!dbUser.match(loginUserDto)) {
+        if(!dbUser.matches(loginUserDto)) {
             // todo 아이디비밀번호 불일치
-            throw new IllegalArgumentException("User not match");
+            throw new IllegalArgumentException("User not matches");
         }
         return dbUser;
     }

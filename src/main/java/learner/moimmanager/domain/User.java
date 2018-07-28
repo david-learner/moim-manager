@@ -17,7 +17,8 @@ public class User {
     @Column(length = 30, nullable = false)
     private String nickName;
 
-    @Column(length = 20, nullable = false)
+//    @Column(columnDefinition = "BINARY(60)", nullable = false)
+    @Column(length = 60, nullable = false)
     private String password;
 
     @Column(length = 50, nullable = false, unique = true)
@@ -49,7 +50,7 @@ public class User {
         return email;
     }
 
-    public boolean match(LoginUserDto loginUserDto) {
+    public boolean matches(LoginUserDto loginUserDto) {
         if (!this.email.equals(loginUserDto.getEmail())) {
             // todo id, pw 일치하지 않는 예외 만들기
             throw new IllegalArgumentException("id가 일치하지 않습니다.");

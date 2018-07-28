@@ -18,6 +18,6 @@ public class UserTest {
 
     @Test
     public void match() {
-        assertThat(DEFAULT_DB_USER.match(DEFAULT_LOGIN_USER_DTO), is(true));
+        assertThat(DEFAULT_DB_USER.matches(DEFAULT_LOGIN_USER_DTO), is(true));
     }
 }

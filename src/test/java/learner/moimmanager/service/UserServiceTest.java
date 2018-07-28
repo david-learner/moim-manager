@@ -18,6 +18,6 @@ public class UserServiceTest {
         when(userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getEmail())).thenReturn(Optional.of(DEFAULT_DB_USER));
 
         User dbUser = userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getEmail()).get();
-        assertThat(dbUser.match(DEFAULT_LOGIN_USER_DTO),is(true));
+        assertThat(dbUser.matches(DEFAULT_LOGIN_USER_DTO),is(true));
     }
 }
