@@ -1,6 +1,7 @@
 package learner.moimmanager.service;
 
 import learner.moimmanager.domain.User;
+import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.dto.UserDto;
 import learner.moimmanager.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,12 @@ public class UserService {
         userRepository.save(userDto.toUser());
     }
 
-    public User login(UserDto userDto) {
-        return userRepository.findByEmail(userDto.getEmail()).orElseThrow(NullPointerException::new);
-        // 로그인 구현중, dto로 사용자 정보 넘겨받아서 db에서 조회해와서 비교하기 중
+    public User login(LoginUserDto loginUserDto) {
+        User dbUser = userRepository.findByEmail(loginUserDto.getId()).orElseThrow(NullPointerException::new);
+        if(!dbUser.match(loginUserDto)) {
+            // todo 아이디비밀번호 불일치
+            throw new IllegalArgumentException("User not match");
+        }
+        return dbUser;
     }
 }

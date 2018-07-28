@@ -1,5 +1,6 @@
 package learner.moimmanager.web;
 
+import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.dto.UserDto;
 import learner.moimmanager.service.UserService;
 import org.slf4j.Logger;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
+    private static String SESSION_LOGIN_USER_KEY = "loginUser";
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Resource(name = "userService")
@@ -32,8 +35,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(UserDto userDto) {
-        userService.login(userDto);
+    public String login(LoginUserDto loginUserDto, HttpSession httpSession) {
+        httpSession.setAttribute(SESSION_LOGIN_USER_KEY, userService.login(loginUserDto));
         return "redirect:/";
     }
 }
