@@ -7,7 +7,6 @@ import learner.moimmanager.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -20,7 +19,7 @@ public class UserService {
     }
 
     public User login(LoginUserDto loginUserDto) {
-        User dbUser = userRepository.findByEmail(loginUserDto.getId()).orElseThrow(NullPointerException::new);
+        User dbUser = userRepository.findByEmail(loginUserDto.getEmail()).orElseThrow(NullPointerException::new);
         if(!dbUser.match(loginUserDto)) {
             // todo 아이디비밀번호 불일치
             throw new IllegalArgumentException("User not match");

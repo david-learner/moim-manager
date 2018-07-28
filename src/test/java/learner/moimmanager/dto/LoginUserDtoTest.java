@@ -8,6 +8,6 @@ public class LoginUserDtoTest {
     @Test
     public void create() {
         LoginUserDto loginUserDto = new LoginUserDto();
-        assertNull(loginUserDto.getId());
+        assertNull(loginUserDto.getEmail());
     }
 }

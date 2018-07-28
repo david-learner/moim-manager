@@ -1,11 +1,13 @@
 package learner.moimmanager.web;
 
+import learner.moimmanager.domain.User;
 import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.dto.UserDto;
 import learner.moimmanager.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +36,16 @@ public class UserController {
         return "/user/signup";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "/user/signin";
+    }
+
     @PostMapping("/login")
-    public String login(LoginUserDto loginUserDto, HttpSession httpSession) {
-        httpSession.setAttribute(SESSION_LOGIN_USER_KEY, userService.login(loginUserDto));
+    public String login(LoginUserDto loginUserDto, HttpSession session) {
+        log.debug("loginUserDto : {}", loginUserDto.toString());
+        User user = userService.login(loginUserDto);
+        session.setAttribute(SESSION_LOGIN_USER_KEY, user);
         return "redirect:/";
     }
 }

@@ -1,23 +1,23 @@
 package learner.moimmanager.dto;
 
 public class LoginUserDto {
-    private String id;
+    private String email;
     private String password;
 
     public LoginUserDto() {
     }
 
-    public LoginUserDto(String id, String password) {
-        this.id = id;
+    public LoginUserDto(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -26,5 +26,13 @@ public class LoginUserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginUserDto{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

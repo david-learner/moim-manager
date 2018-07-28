@@ -50,7 +50,7 @@ public class User {
     }
 
     public boolean match(LoginUserDto loginUserDto) {
-        if (!this.email.equals(loginUserDto.getId())) {
+        if (!this.email.equals(loginUserDto.getEmail())) {
             // todo id, pw 일치하지 않는 예외 만들기
             throw new IllegalArgumentException("id가 일치하지 않습니다.");
         }

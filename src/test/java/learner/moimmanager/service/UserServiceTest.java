@@ -15,9 +15,9 @@ public class UserServiceTest {
     @Test
     public void login() {
         UserRepository userRepository = mock(UserRepository.class);
-        when(userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getId())).thenReturn(Optional.of(DEFAULT_DB_USER));
+        when(userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getEmail())).thenReturn(Optional.of(DEFAULT_DB_USER));
 
-        User dbUser = userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getId()).get();
+        User dbUser = userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getEmail()).get();
         assertThat(dbUser.match(DEFAULT_LOGIN_USER_DTO),is(true));
     }
 }
