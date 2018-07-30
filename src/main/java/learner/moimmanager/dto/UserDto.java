@@ -1,8 +1,7 @@
 package learner.moimmanager.dto;
 
 import learner.moimmanager.domain.User;
-import learner.moimmanager.security.Encyption;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import learner.moimmanager.security.Encryption;
 
 public class UserDto {
 
@@ -22,7 +21,7 @@ public class UserDto {
     }
 
     public User toUser() {
-        return new User(name, nickname, Encyption.encode(password), email);
+        return new User(name, nickname, Encryption.encode(password), email);
     }
 
     @Override

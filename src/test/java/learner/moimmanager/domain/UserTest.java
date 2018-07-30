@@ -1,6 +1,9 @@
 package learner.moimmanager.domain;
 
+import learner.moimmanager.dto.LoginUserDto;
 import org.junit.Test;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_USER;
 import static learner.moimmanager.support.test.DummyData.DEFAULT_LOGIN_USER_DTO;
@@ -18,6 +21,8 @@ public class UserTest {
 
     @Test
     public void match() {
-        assertThat(DEFAULT_DB_USER.matches(DEFAULT_LOGIN_USER_DTO), is(true));
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        LoginUserDto loginUserDto = new LoginUserDto("hard@learner.com", "password1234");
+        assertThat(DEFAULT_DB_USER.matches(loginUserDto), is(true));
     }
 }
