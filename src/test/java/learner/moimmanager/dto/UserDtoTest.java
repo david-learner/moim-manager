@@ -16,11 +16,4 @@ public class UserDtoTest {
         UserDto userDto = new UserDto();
         assertNull(userDto.getName());
     }
-
-    @Test
-    public void toUser_encrypt() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        User user = DEFAULT_USER_DTO.toUser();
-        assertThat(encoder.matches(DEFAULT_LOGIN_USER_DTO.getPassword(), user.getPassword()),is(true));
-    }
 }
