@@ -12,15 +12,19 @@ import java.util.List;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new BasicAuthInterceptor())
-            .addPathPatterns("/*");
-    }
-
     @Bean
     public LoginUserHandlerMethodArgumentResolver loginUserArgumentResolver() {
         return new LoginUserHandlerMethodArgumentResolver();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(basicAuthInterceptor());
+    }
+
+    @Bean
+    public BasicAuthInterceptor basicAuthInterceptor() {
+        return new BasicAuthInterceptor();
     }
 
     @Override

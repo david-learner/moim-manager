@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpSession;
 
 public class HttpSessionUtils {
-    private static String SESSION_LOGIN_USER_KEY = "loginUser";
+    public static String SESSION_LOGIN_USER_KEY = "loginUser";
 
     public static boolean isLoginUser(HttpSession session) {
         return session.getAttribute(SESSION_LOGIN_USER_KEY) != null;
