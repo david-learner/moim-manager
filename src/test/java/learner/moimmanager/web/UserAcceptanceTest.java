@@ -38,13 +38,14 @@ public class UserAcceptanceTest {
                 .addParameter("password", "password").build();
 
         ResponseEntity<String> response = template.postForEntity("/users", request, String.class);
-        assertThat(response.getStatusCode(),is(HttpStatus.FOUND));
+        assertThat(response.getStatusCode(), is(HttpStatus.FOUND));
     }
 
     @Test
     public void login() {
-        TestRestTemplate authTemplate = template.withBasicAuth("hard@learner.com", "hardlearner");
+        TestRestTemplate authTemplate = template.withBasicAuth("hard@learner.com", "password1234");
         ResponseEntity<String> response = authTemplate.getForEntity("/", String.class);
+
         assertThat(response.getBody().contains("로그아웃"), is(true));
     }
 }
