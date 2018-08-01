@@ -53,4 +53,3 @@ public class UserAcceptanceTest {
         assertThat(response.getBody().contains("로그아웃"), is(true));
     }
 }
-

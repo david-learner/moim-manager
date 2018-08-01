@@ -2,13 +2,18 @@ package learner.moimmanager.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Encryption {
-    private static final Logger log =  LoggerFactory.getLogger(Encryption.class);
-    private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private static final Logger log = LoggerFactory.getLogger(Encryption.class);
+    private static PasswordEncoder encoder;
 
-    private Encryption() {
+    @Autowired
+    public Encryption(PasswordEncoder passwordEncoder) {
+        encoder = passwordEncoder;
     }
 
     public static String encode(String rawPassword) {

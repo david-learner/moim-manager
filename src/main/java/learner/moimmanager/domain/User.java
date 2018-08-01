@@ -2,14 +2,15 @@ package learner.moimmanager.domain;
 
 import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.security.Encryption;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "member")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +21,6 @@ public class User {
     @Column(length = 30, nullable = false)
     private String nickName;
 
-    //    @Column(columnDefinition = "BINARY(60)", nullable = false)
     @Column(length = 60, nullable = false)
     private String password;
 
@@ -63,8 +63,6 @@ public class User {
             throw new IllegalArgumentException("id가 일치하지 않습니다.");
         }
 
-        // todo Bcryt 사용하여 pw 비교하기
-//        if (Encryption.matches(loginUserDto.getPassword(), password)) {
         if (!Encryption.matches(loginUserDto.getPassword(), password)) {
             // todo id, pw 일치하지 않는 예외 만들기
             throw new IllegalArgumentException("pw가 일치하지 않습니다.");

@@ -10,9 +10,8 @@ public class BcrytTest {
     @Test
     public void matches() {
         String rawPassword = "password1234";
-        String encodedPassword;
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        encodedPassword = encoder.encode(rawPassword);
+        String encodedPassword = encoder.encode(rawPassword);
         assertThat(encoder.matches(rawPassword, "$2a$10$dz3H1lzrsiWVLfYjHzevWescgmz7OzVtWEfdDchorkT9F00uEnXgC"), is(true));
     }
 }
