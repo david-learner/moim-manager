@@ -1,6 +1,7 @@
 package learner.moimmanager.dto;
 
 import learner.moimmanager.domain.User;
+import learner.moimmanager.security.Encryption;
 
 public class UserDto {
 
@@ -20,7 +21,7 @@ public class UserDto {
     }
 
     public User toUser() {
-        return new User(name, nickname, password, email);
+        return new User(name, nickname, Encryption.encode(password), email);
     }
 
     @Override

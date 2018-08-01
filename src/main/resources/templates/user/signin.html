@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> common/header}}
+<body>
+{{> common/navbar}}
+<div class="container">
+    <div class="d-flex justify-content-center p-3">
+        <form action="/users/login" method="post">
+            <div class="text-center"><h2>로그인</h2></div>
+            <div class="p-2">
+                <div>이메일</div>
+                <div><input type="text" name="email" value="hard@learner.com"></div>
+            </div>
+            <div class="p-2">
+                <div>비밀번호</div>
+                <div><input type="password" name="password" value="password1234"></div>
+            </div>
+            <div class="p-2 text-center">
+                <button type="submit" class="btn bg-yellow text-purple">로그인</button>
+            </div>
+        </form>
+    </div>
+</div>
+{{> common/footer}}
+</body>
+</html>

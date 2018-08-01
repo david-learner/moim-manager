@@ -3,6 +3,8 @@ package learner.moimmanager.web;
 import learner.moimmanager.support.test.HtmlFormDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -19,6 +21,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class UserAcceptanceTest {
+    private static final Logger log =  LoggerFactory.getLogger(UserAcceptanceTest.class);
 
     @Autowired
     TestRestTemplate template;
@@ -38,8 +41,15 @@ public class UserAcceptanceTest {
                 .addParameter("password", "password").build();
 
         ResponseEntity<String> response = template.postForEntity("/users", request, String.class);
-        assertThat(response.getStatusCode(),is(HttpStatus.FOUND));
+        assertThat(response.getStatusCode(), is(HttpStatus.FOUND));
+    }
 
+    @Test
+    public void login() {
+        TestRestTemplate authTemplate = template.withBasicAuth("hard@learner.com", "password1234");
+        ResponseEntity<String> response = authTemplate.getForEntity("/", String.class);
+
+        log.debug("response : {}", response.getBody());
+        assertThat(response.getBody().contains("로그아웃"), is(true));
     }
 }
-
