@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 @Service
 public class UserService {
-    private static final Logger log =  LoggerFactory.getLogger(UserService.class);
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Resource(name = "userRepository")
     UserRepository userRepository;
@@ -23,11 +23,13 @@ public class UserService {
     }
 
     public User login(LoginUserDto loginUserDto) {
-        User dbUser = userRepository.findByEmail(loginUserDto.getEmail()).orElseThrow(NullPointerException::new);
-        if(!dbUser.matches(loginUserDto)) {
-            // todo 아이디비밀번호 불일치
-            throw new IllegalArgumentException("User not matches");
-        }
-        return dbUser;
+//        User dbUser = userRepository.findByEmail(loginUserDto.getEmail()).orElseThrow(NullPointerException::new);
+//
+//        if(!dbUser.matches(loginUserDto)) {
+//            // todo 아이디비밀번호 불일치
+//            throw new IllegalArgumentException("User not matches");
+//        }
+//        return dbUser;
+        return userRepository.findByEmail(loginUserDto.getEmail()).filter(u -> u.matches(loginUserDto)).orElseThrow(IllegalArgumentException::new);
     }
 }

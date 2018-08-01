@@ -7,6 +7,7 @@ import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 public class HttpSessionUtils {
     public static String SESSION_LOGIN_USER_KEY = "loginUser";
@@ -15,7 +16,7 @@ public class HttpSessionUtils {
         return session.getAttribute(SESSION_LOGIN_USER_KEY) != null;
     }
 
-    public static User getUserFromSession(NativeWebRequest request) {
-        return (User) request.getAttribute(SESSION_LOGIN_USER_KEY, WebRequest.SCOPE_SESSION);
+    public static Optional<User> getUserFromSession(NativeWebRequest request) {
+        return Optional.ofNullable(request.getAttribute(SESSION_LOGIN_USER_KEY, WebRequest.SCOPE_SESSION)).map(User.class::cast);
     }
 }

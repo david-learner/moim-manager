@@ -18,11 +18,12 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        User user = HttpSessionUtils.getUserFromSession(webRequest);
-        if (user != null) {
-            return user;
-        }
-
-        throw new IllegalStateException("You need login");
+//        User user = HttpSessionUtils.getUserFromSession(webRequest);
+//        if (user != null) {
+//            return user;
+//        }
+//
+//        throw new IllegalStateException("You need login");
+        return HttpSessionUtils.getUserFromSession(webRequest).orElseThrow(IllegalArgumentException::new);
     }
 }
