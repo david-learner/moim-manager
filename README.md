@@ -13,7 +13,7 @@
 * 출석 및 과제 제출 관리
 
 ## 구성
-### User
+### User(member)
 1. 모임장
     * main - 1명
     
@@ -27,3 +27,10 @@
 2. 모임원
 
 ![hierarchy](readmeImages/hierarchy.png)
+
+### Moim(group)
+
+![moim_hierarchy](readmeImages/moim_hierarchy.jpg)
+
+
+
