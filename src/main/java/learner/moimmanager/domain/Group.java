@@ -1,9 +1,6 @@
 package learner.moimmanager.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +17,11 @@ public class Group {
     @Column(length = 15)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User leader;
 
+    @ManyToMany
     private List<User> users = new ArrayList<>();
 
     public Group() {
@@ -34,6 +34,14 @@ public class Group {
 
     public long getId() {
         return id;
+    }
+
+    public User getLeader() {
+        return leader;
+    }
+
+    public void setLeader(User leader) {
+        this.leader = leader;
     }
 
     @Override

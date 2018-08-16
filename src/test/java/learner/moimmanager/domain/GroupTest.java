@@ -22,4 +22,6 @@ public class GroupTest {
         group.addUser(user);
         assertThat(group.getUsers().toString().contains("정재욱"), is(true));
     }
+
+
 }
