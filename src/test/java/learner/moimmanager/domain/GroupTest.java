@@ -19,8 +19,8 @@ public class GroupTest {
     public void addUser() {
         Group group = new Group("인터나비", DummyData.DEFAULT_DB_USER);
         User user = new User("정재욱", "재우기", "password", "jung@jaewook.com");
-        group.addUser(user);
-        assertThat(group.getUsers().toString().contains("정재욱"), is(true));
+        group.addMember(user);
+        assertThat(group.getMembers().toString().contains("정재욱"), is(true));
     }
 
 

@@ -10,31 +10,31 @@
             <div class="p-2">
                 <div>모임명</div>
                 <div>
-                    <input type="text" name="group-name" id="group-name" value="부경나비" />
+                    <input type="text" name="name" id="name" value="부경나비" />
                 </div>
             </div>
             <div class="p-2">
                 <div>1차 분류</div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sort-group1" id="sort-group1-1" value="option1" checked>
-                    <label class="form-check-label" for="sort-group1-1">
+                    <input class="form-check-input" type="radio" name="sort_primary" id="sort1-1" value="small_group" checked>
+                    <label class="form-check-label" for="sort1-1">
                         소모임
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sort-group1" id="sort-group1-2" value="option2">
-                    <label class="form-check-label" for="sort-group1-2">
+                    <input class="form-check-input" type="radio" name="sort_primary" id="sort1-2" value="study">
+                    <label class="form-check-label" for="sort1-2">
                         스터디
                     </label>
                 </div>
             </div>
             <div class="p-2">
-                <label class="form-check-label" for="sort-group2-1">2차 분류</label>
-                <div><input type="text" name="sort-group2" id="sort-group2-1" value="독서"></div>
+                <label class="form-check-label" for="sort2_1">2차 분류</label>
+                <div><input type="text" name="sort_secondary" id="sort2_1" value="독서"></div>
             </div>
             <div class="p-2">
                 <div>지역</div>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" name="region" id="region">
                     <option value="0" selected>전국</option>
                     <option value="1">강원도</option>
                     <option value="2">경기도</option>
@@ -57,20 +57,20 @@
             <div class="p-2">
                 <div>장소</div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sort-group3" id="sort-group3-1" value="option1" checked>
-                    <label class="form-check-label" for="sort-group3-1">
+                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_1" value="on" checked>
+                    <label class="form-check-label" for="connect_method_1">
                         온라인
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sort-group3" id="sort-group3-2" value="option1" >
-                    <label class="form-check-label" for="sort-group3-2">
+                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_2" value="off" >
+                    <label class="form-check-label" for="connect_method_2">
                         오프라인
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sort-group3" id="sort-group3-3" value="option1" >
-                    <label class="form-check-label" for="sort-group3-3">
+                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_3" value="onoff" >
+                    <label class="form-check-label" for="connect_method_3">
                         온/오프라인
                     </label>
                 </div>
