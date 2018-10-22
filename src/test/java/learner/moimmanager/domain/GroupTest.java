@@ -10,20 +10,17 @@ public class GroupTest {
 
     @Test
     public void create() {
-        Group group = new Group();
-        group.setName("부경나비").madeBy(DummyData.DEFAULT_DB_USER);
-        assertThat(group.getId(), is(0L));
-        assertThat(group.toString().contains("부경나비"),is(true));
+        Group group = new Group(DummyData.DEFAULT_DB_USER, DummyData.DEFAULT_GROUP_PROPERTIES);
+        assertThat(group.getName(), is("부경나비"));
     }
 
     @Test
     public void addUser() {
-        Group group = new Group();
-        group.setName("부경나비").madeBy(DummyData.DEFAULT_DB_USER);
-        User user = new User("정재욱", "재우기", "password", "jung@jaewook.com");
+        Group group = new Group(DummyData.DEFAULT_DB_USER, DummyData.DEFAULT_GROUP_PROPERTIES);
+        User user = new User("정재욱", "재우기", "password", "jung@jaewook.com", Grade.NORMAL);
+
+        assertThat(group.getMemberCount(), is(0));
         group.addMember(user);
-        assertThat(group.getUsers().toString().contains("정재욱"), is(true));
+        assertThat(group.getMemberCount(), is(1));
     }
-
-
 }

@@ -23,14 +23,17 @@ public class User {
     @Column(length = 50, nullable = false, unique = true)
     private String email;
 
+    private Grade grade;
+
     public User() {
     }
 
-    public User(String name, String nickName, String password, String email) {
+    public User(String name, String nickName, String password, String email, Grade grade) {
         this.name = name;
         this.nickName = nickName;
         this.password = password;
         this.email = email;
+        this.grade = grade;
     }
 
     public String getName() {
@@ -75,5 +78,9 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Grade getGrade() {
+        return grade;
     }
 }

@@ -1,6 +1,7 @@
 package learner.moimmanager.web;
 
 import learner.moimmanager.domain.Group;
+import learner.moimmanager.domain.GroupProperties;
 import learner.moimmanager.domain.User;
 import learner.moimmanager.security.LoginUser;
 import org.slf4j.Logger;
@@ -21,7 +22,8 @@ public class GroupController {
     }
 
     @PostMapping
-    public String create(@LoginUser User user, Group group) {
+    public String create(@LoginUser User user, GroupProperties properties) {
+        
         return "redirect:/";
     }
 }

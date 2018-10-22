@@ -11,7 +11,9 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_USER;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(PowerMockRunner.class)
@@ -21,6 +23,12 @@ public class UserTest {
     public void create() {
         User guest = new User();
         assertNull(guest.getName());
+    }
+
+    @Test
+    public void getMemberGrade() {
+        User normalUser = new User("황태원", "learner", "password", "learner@learn.er", Grade.NORMAL);
+        assertThat(normalUser.getGrade(), is(Grade.NORMAL));
     }
 
     @Test
