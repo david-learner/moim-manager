@@ -9,8 +9,7 @@ import java.util.List;
 @Entity
 public class Group {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private long id;
 
     @Size(min = 1, max = 15)
@@ -22,7 +21,7 @@ public class Group {
     private User leader;
 
     @ManyToMany
-    private List<User> members = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     private String sort_primary;
 
@@ -35,11 +34,6 @@ public class Group {
     //Constructor
 
     public Group() {
-    }
-
-    public Group(String name, User leader) {
-        this.name = name;
-        this.leader = leader;
     }
 
     //Getter-Setter
@@ -56,10 +50,6 @@ public class Group {
         return leader;
     }
 
-    public void setLeader(User leader) {
-        this.leader = leader;
-    }
-
     public String getConnect_type() {
         return connect_type;
     }
@@ -72,8 +62,9 @@ public class Group {
         return name;
     }
 
-    public void setName(String name) {
+    public Group setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getSort_primary() {
@@ -108,15 +99,20 @@ public class Group {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", leader=" + leader +
-                ", members=" + Arrays.toString(members.toArray()) +
+                ", users=" + Arrays.toString(users.toArray()) +
                 '}';
     }
 
     public void addMember(User user) {
-        members.add(user);
+        users.add(user);
     }
 
-    public List<User> getMembers() {
-        return members;
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public Group madeBy(User leader) {
+        this.leader = leader;
+        return this;
     }
 }

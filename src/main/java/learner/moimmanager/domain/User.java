@@ -2,14 +2,10 @@ package learner.moimmanager.domain;
 
 import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.security.Encryption;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "member")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
