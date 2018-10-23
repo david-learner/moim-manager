@@ -19,6 +19,9 @@ public class Group {
     @Embedded
     private GroupProperties properties;
 
+    public Group() {
+    }
+
     public Group(User opener, GroupProperties properties) {
         leader = opener;
         members = new Members(opener);

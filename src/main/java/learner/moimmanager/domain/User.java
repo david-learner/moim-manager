@@ -24,6 +24,8 @@ public class User {
     @Column(length = 60, nullable = false, unique = true)
     private String email;
 
+    // TODO openedGroups, joinedGroups를 설계적으로 잘 합칠 방법이 없는지 더 고민하기
+
     @Embedded
     private Groups openedGroups;
 

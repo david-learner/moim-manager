@@ -11,6 +11,9 @@ public class Members {
     @OneToMany
     private List<User> members;
 
+    public Members() {
+    }
+
     public Members(User leader) {
         members = new ArrayList<>(leader.getGrade().getCapacity());
     }

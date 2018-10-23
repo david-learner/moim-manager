@@ -1,5 +1,6 @@
 package learner.moimmanager.service;
 
+import learner.moimmanager.domain.Grade;
 import learner.moimmanager.domain.Group;
 import learner.moimmanager.domain.GroupProperties;
 import learner.moimmanager.domain.User;
@@ -18,7 +19,15 @@ public class GroupService {
     @Resource(name = "groupRepository")
     private GroupRepository groupRepository;
 
+    @Resource(name = "userService")
+    private UserService userService;
+
     public Group create(User leader, GroupProperties properties) {
-        return groupRepository.save(new Group(leader, properties));
+        log.debug("GroupProperties : {}", properties.toString());
+        Group openedGroup = new Group(leader, properties);
+        // TODO 제약조건 위반하지 않게 cascade 설정 다시하기, 현재는 save가 먼저 되어야 함
+        groupRepository.save(openedGroup);
+        userService.openGroup(leader, openedGroup);
+        return null;
     }
 }

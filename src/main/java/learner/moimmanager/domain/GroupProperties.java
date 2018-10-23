@@ -32,16 +32,32 @@ public class GroupProperties {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getCategory() {
         return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getConnect_type() {
         return connect_type;
     }
 
+    public void setConnect_type(String connect_type) {
+        this.connect_type = connect_type;
+    }
+
     public String getRegion() {
         return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     @Override

@@ -24,9 +24,6 @@ public class GroupController {
     @Resource(name = "groupService")
     private GroupService groupService;
 
-    @Resource(name = "userService")
-    private UserService userService;
-
     @GetMapping
     public String createForm() {
         return "/group/groupCreateForm";
