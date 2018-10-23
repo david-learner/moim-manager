@@ -12,7 +12,7 @@ public class Members {
     private List<User> members;
 
     public Members(User leader) {
-        members = new ArrayList<>(leader.getGrade().getGroupMemberCapacity());
+        members = new ArrayList<>(leader.getGrade().getCapacity());
     }
 
     public void add(User user) {

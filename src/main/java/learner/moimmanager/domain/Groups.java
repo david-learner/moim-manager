@@ -12,10 +12,18 @@ public class Groups {
     private List<Group> groups;
 
     public Groups() {
-        groups = new ArrayList<>();
+        groups = new ArrayList<>(1);
+    }
+
+    public Groups(int capacity) {
+        groups = new ArrayList<>(capacity);
     }
 
     public void add(Group group) {
         groups.add(group);
+    }
+
+    public int size() {
+        return groups.size();
     }
 }

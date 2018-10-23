@@ -18,8 +18,7 @@ public class GroupService {
     @Resource(name = "groupRepository")
     private GroupRepository groupRepository;
 
-    public void create(User leader, GroupProperties properties) {
-        Group group = groupRepository.save(new Group(leader, properties));
-        log.debug("group : {}", group.toString());
+    public Group create(User leader, GroupProperties properties) {
+        return groupRepository.save(new Group(leader, properties));
     }
 }

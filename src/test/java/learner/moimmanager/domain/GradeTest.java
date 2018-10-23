@@ -8,6 +8,6 @@ import static org.junit.Assert.assertThat;
 public class GradeTest {
     @Test
     public void getGroupMemberCapacity() {
-        assertThat(Grade.NORMAL.getGroupMemberCapacity(), is(10));
+        assertThat(Grade.NORMAL.getCapacity(), is(10));
     }
 }

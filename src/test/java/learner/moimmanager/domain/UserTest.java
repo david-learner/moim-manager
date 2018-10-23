@@ -2,6 +2,7 @@ package learner.moimmanager.domain;
 
 import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.security.Encryption;
+import learner.moimmanager.support.test.DummyData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_USER;
+import static learner.moimmanager.support.test.DummyData.DEFAULT_GROUP;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -38,5 +40,10 @@ public class UserTest {
         LoginUserDto loginUserDto = new LoginUserDto("hard@learner.com", "password1234");
         BDDMockito.given(Encryption.matches(loginUserDto.getPassword(), DEFAULT_DB_USER.getPassword())).willReturn(true);
         assertTrue(DEFAULT_DB_USER.matches(loginUserDto));
+    }
+
+    @Test
+    public void addOpendGroup() {
+        assertThat(DEFAULT_DB_USER.addOpendGroup(DEFAULT_GROUP).size(), is(1));
     }
 }

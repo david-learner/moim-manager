@@ -25,7 +25,10 @@ public class User {
     private String email;
 
     @Embedded
-    private Groups groups;
+    private Groups openedGroups;
+
+    @Embedded
+    private Groups joinedGroups;
 
     @Enumerated(EnumType.STRING)
     private Grade grade;
@@ -39,6 +42,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.grade = grade;
+        openedGroups = new Groups(grade.getCapacity());
+        joinedGroups = new Groups(grade.getCapacity());
     }
 
     public String getName() {
@@ -87,5 +92,16 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    // 왜 opendGroups를 리턴하는가? 현재 가입된 모임의 개수를 DB를 거치지 않고 바로 알 수 있고, 테스트 용이성
+    public Groups addOpendGroup(Group openedGroup) {
+        openedGroups.add(openedGroup);
+        return openedGroups;
+    }
+
+    public Groups addJoinedGroup(Group joinedGroup) {
+        joinedGroups.add(joinedGroup);
+        return joinedGroups;
     }
 }

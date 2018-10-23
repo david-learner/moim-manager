@@ -4,13 +4,13 @@ public enum Grade {
     NORMAL(10),
     BUISINESS(100);
 
-    private int groupMemberCapacity;
+    private int capacity;
 
-    private Grade(int groupMemberCapacity) {
-        this.groupMemberCapacity = groupMemberCapacity;
+    private Grade(int capacity) {
+        this.capacity = capacity;
     }
 
-    public int getGroupMemberCapacity() {
-        return groupMemberCapacity;
+    public int getCapacity() {
+        return capacity;
     }
 }

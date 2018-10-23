@@ -1,5 +1,7 @@
 package learner.moimmanager.service;
 
+import learner.moimmanager.domain.Group;
+import learner.moimmanager.domain.Groups;
 import learner.moimmanager.domain.User;
 import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.dto.UserDto;
@@ -16,7 +18,7 @@ public class UserService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Resource(name = "userRepository")
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public void create(UserDto userDto) {
         log.debug("userDto : {}", userDto.toString());
@@ -32,5 +34,10 @@ public class UserService {
 //        }
 //        return dbUser;
         return userRepository.findByEmail(loginUserDto.getEmail()).filter(u -> u.matches(loginUserDto)).orElseThrow(IllegalArgumentException::new);
+    }
+
+    public void openGroup(User leader, Group opendGroup) {
+        leader.addOpendGroup(opendGroup);
+        userRepository.save(leader);
     }
 }

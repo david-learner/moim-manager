@@ -13,11 +13,6 @@ public class Encryption {
     private static final Logger log = LoggerFactory.getLogger(Encryption.class);
     private static PasswordEncoder encoder;
 
-//    @Resource()
-//    public void set() {
-//
-//    }
-
     @Autowired
     public Encryption(PasswordEncoder passwordEncoder) {
         encoder = passwordEncoder;

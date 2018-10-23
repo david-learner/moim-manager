@@ -1,5 +1,6 @@
 package learner.moimmanager.repository;
 
+import learner.moimmanager.domain.Group;
 import learner.moimmanager.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
