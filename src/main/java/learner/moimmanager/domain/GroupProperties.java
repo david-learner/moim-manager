@@ -1,22 +1,31 @@
 package learner.moimmanager.domain;
 
-public class GroupProperties {
-    User leader;
-    String name;
-    String category;
-    String connectType;
-    String region;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-    public GroupProperties(User leader, String name, String category, String connectType, String region) {
-        this.leader = leader;
-        this.name = name;
-        this.category = category;
-        this.connectType = connectType;
-        this.region = region;
+@Embeddable
+public class GroupProperties {
+
+    @Column(length = 10, nullable = false, unique = true)
+    private String name;
+
+    @Column(length = 10, nullable = false)
+    private String category;
+
+    @Column(length = 9, nullable = false)
+    private String connect_type;
+
+    @Column(length = 5, nullable = false, unique = true)
+    private String region;
+
+    public GroupProperties() {
     }
 
-    public User getLeader() {
-        return leader;
+    public GroupProperties(String name, String category, String connect_type, String region) {
+        this.name = name;
+        this.category = category;
+        this.connect_type = connect_type;
+        this.region = region;
     }
 
     public String getName() {
@@ -27,8 +36,8 @@ public class GroupProperties {
         return category;
     }
 
-    public String getConnectType() {
-        return connectType;
+    public String getConnect_type() {
+        return connect_type;
     }
 
     public String getRegion() {
@@ -38,10 +47,9 @@ public class GroupProperties {
     @Override
     public String toString() {
         return "GroupProperties{" +
-                "leader=" + leader +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", category='" + category + '\'' +
-                ", connectType='" + connectType + '\'' +
+                ", connect_type='" + connect_type + '\'' +
                 ", region='" + region + '\'' +
                 '}';
     }

@@ -6,6 +6,6 @@ import org.junit.Test;
 public class GroupPropertiesTest {
     @Test
     public void setUp() {
-        GroupProperties properties = new GroupProperties(DummyData.DEFAULT_DB_USER, "부경나비", "독서", "online", "부산");
+        GroupProperties properties = new GroupProperties("부경나비", "독서", "online", "부산");
     }
 }

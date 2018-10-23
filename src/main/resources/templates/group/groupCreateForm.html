@@ -14,62 +14,64 @@
                 </div>
             </div>
             <div class="p-2">
-                <div>1차 분류</div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sort_primary" id="sort1-1" value="small_group" checked>
-                    <label class="form-check-label" for="sort1-1">
-                        소모임
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sort_primary" id="sort1-2" value="study">
-                    <label class="form-check-label" for="sort1-2">
-                        스터디
-                    </label>
-                </div>
+                <div>카테고리</div>
+                <div><input type="text" name="category" id="category" value="독서"></div>
+                <!--<div>1차 분류</div>-->
+                <!--<div class="form-check form-check-inline">-->
+                    <!--<input class="form-check-input" type="radio" name="sort_primary" id="sort1-1" value="small_group" checked>-->
+                    <!--<label class="form-check-label" for="sort1-1">-->
+                        <!--소모임-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div class="form-check form-check-inline">-->
+                    <!--<input class="form-check-input" type="radio" name="sort_primary" id="sort1-2" value="study">-->
+                    <!--<label class="form-check-label" for="sort1-2">-->
+                        <!--스터디-->
+                    <!--</label>-->
+                <!--</div>-->
             </div>
-            <div class="p-2">
-                <label class="form-check-label" for="sort2_1">2차 분류</label>
-                <div><input type="text" name="sort_secondary" id="sort2_1" value="독서"></div>
-            </div>
+            <!--<div class="p-2">-->
+                <!--<label class="form-check-label" for="sort2_1">2차 분류</label>-->
+                <!--<div><input type="text" name="sort_secondary" id="sort2_1" value="독서"></div>-->
+            <!--</div>-->
             <div class="p-2">
                 <div>지역</div>
                 <select class="custom-select mr-sm-2" name="region" id="region">
-                    <option value="0" selected>전국</option>
-                    <option value="1">강원도</option>
-                    <option value="2">경기도</option>
-                    <option value="3">경상남도</option>
-                    <option value="4">경상북도</option>
-                    <option value="5">전라남도</option>
-                    <option value="6">전라북도</option>
-                    <option value="7">제주도</option>
-                    <option value="8">충청남도</option>
-                    <option value="9">충청북도</option>
-                    <option value="10">서울</option>
-                    <option value="11">부산</option>
-                    <option value="12">대구</option>
-                    <option value="13">인천</option>
-                    <option value="14">광주</option>
-                    <option value="14">대전</option>
-                    <option value="14">울산</option>
+                    <option value="전국" selected>전국</option>
+                    <option value="강원도">강원도</option>
+                    <option value="경기도">경기도</option>
+                    <option value="경상남도">경상남도</option>
+                    <option value="경상북도">경상북도</option>
+                    <option value="전라남도">전라남도</option>
+                    <option value="전라북도">전라북도</option>
+                    <option value="제주도">제주도</option>
+                    <option value="충청남도">충청남도</option>
+                    <option value="충청북도">충청북도</option>
+                    <option value="서울특별시">서울특별시</option>
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="인천광역시">인천광역시</option>
+                    <option value="광주광역시">광주광역시</option>
+                    <option value="대전광역시">대전광역시</option>
+                    <option value="울산광역시">울산광역시</option>
                 </select>
             </div>
             <div class="p-2">
                 <div>장소</div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_1" value="on" checked>
+                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_1" value="online" checked>
                     <label class="form-check-label" for="connect_method_1">
                         온라인
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_2" value="off" >
+                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_2" value="offline" >
                     <label class="form-check-label" for="connect_method_2">
                         오프라인
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_3" value="onoff" >
+                    <input class="form-check-input" type="radio" name="connect_type" id="connect_method_3" value="onoffline" >
                     <label class="form-check-label" for="connect_method_3">
                         온/오프라인
                     </label>

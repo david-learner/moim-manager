@@ -6,23 +6,28 @@ import learner.moimmanager.security.Encryption;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "moim_member")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 15, nullable = false)
+    @Column(length = 10, nullable = false)
     private String name;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 10, nullable = false)
     private String nickName;
 
     @Column(length = 60, nullable = false)
     private String password;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(length = 60, nullable = false, unique = true)
     private String email;
 
+    @Embedded
+    private Groups groups;
+
+    @Enumerated(EnumType.STRING)
     private Grade grade;
 
     public User() {
@@ -56,6 +61,10 @@ public class User {
         return id;
     }
 
+    public Grade getGrade() {
+        return grade;
+    }
+
     public boolean matches(LoginUserDto loginUserDto) {
         if (!this.email.equals(loginUserDto.getEmail())) {
             // todo id, pw 일치하지 않는 예외 만들기
@@ -78,9 +87,5 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    public Grade getGrade() {
-        return grade;
     }
 }

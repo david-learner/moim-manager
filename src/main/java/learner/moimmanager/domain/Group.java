@@ -3,6 +3,7 @@ package learner.moimmanager.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "moim_group")
 public class Group {
 
     @Id
@@ -10,21 +11,20 @@ public class Group {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User leader;
 
+    @Embedded
     private Members members;
 
+    @Embedded
     private GroupProperties properties;
 
-    //Constructor
     public Group(User opener, GroupProperties properties) {
         leader = opener;
         members = new Members(opener);
         this.properties = properties;
     }
 
-    //Getter-Setter
     public String getName() {
         return properties.getName();
     }
@@ -33,7 +33,12 @@ public class Group {
         return members.size();
     }
 
-    //Custom
+    public void addMember(User user) {
+        if (members == null) {
+            members = new Members(user);
+        }
+        members.add(user);
+    }
 
     @Override
     public String toString() {
@@ -43,12 +48,5 @@ public class Group {
                 ", members=" + members +
                 ", properties=" + properties +
                 '}';
-    }
-
-    public void addMember(User user) {
-        if (members == null) {
-            members = new Members(user);
-        }
-        members.add(user);
     }
 }

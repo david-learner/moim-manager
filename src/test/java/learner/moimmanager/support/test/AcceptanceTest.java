@@ -10,7 +10,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class AcceptanceTest {
+abstract public class AcceptanceTest {
     @Autowired
     public TestRestTemplate template;
 }
