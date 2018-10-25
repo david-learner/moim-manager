@@ -23,6 +23,17 @@
 .bg-purple {
     background-color: #6d3afb !important;
 }
+
 .bg-yellow {
     background-color: #ffd014 !important;
+}
+
+.btn-purple {
+    color: #fff;
+    border-color: #6d3afb !important;
+    background-color: #6d3afb !important;
+}
+
+a:hover {
+    color: #fff;
 }
