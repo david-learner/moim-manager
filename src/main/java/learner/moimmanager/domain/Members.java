@@ -15,7 +15,7 @@ public class Members {
     }
 
     public Members(User leader) {
-        members = new ArrayList<>(leader.getGrade().getCapacity());
+        members = new ArrayList<>(leader.getCapacity());
     }
 
     public void add(User user) {

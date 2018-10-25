@@ -46,4 +46,9 @@ public class UserTest {
     public void addOpendGroup() {
         assertThat(DEFAULT_DB_USER.addOpendGroup(DEFAULT_GROUP).size(), is(1));
     }
+
+    @Test
+    public void getCapacity() {
+        assertThat(DEFAULT_DB_USER.getCapacity(), is(10));
+    }
 }

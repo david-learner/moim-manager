@@ -14,7 +14,7 @@ public class Groups {
     private List<Group> groups;
 
     public Groups() {
-        groups = new ArrayList<>(1);
+        this(1);
     }
 
     public Groups(int capacity) {

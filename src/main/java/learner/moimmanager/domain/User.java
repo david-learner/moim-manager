@@ -106,4 +106,8 @@ public class User {
         joinedGroups.add(joinedGroup);
         return joinedGroups;
     }
+
+    public int getCapacity() {
+        return grade.getCapacity();
+    }
 }
