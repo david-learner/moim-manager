@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,14 +26,20 @@ public class GroupController {
     @Resource(name = "groupService")
     private GroupService groupService;
 
-    @GetMapping
-    public String createForm() {
-        return "/group/groupCreateForm";
+    @GetMapping("create")
+    public String createForm(@LoginUser User loginUser) {
+        return "/group/createForm";
     }
 
     @PostMapping
     public String create(@LoginUser User user, GroupProperties properties) {
         groupService.create(user, properties);
+        return "redirect:/";
+    }
+
+    @GetMapping("/{id}/join")
+    public String join(@LoginUser User user, @PathVariable Long id) {
+        log.debug("id : {}", id);
         return "redirect:/";
     }
 }

@@ -2,6 +2,7 @@ package learner.moimmanager.web;
 
 import learner.moimmanager.domain.Group;
 import learner.moimmanager.support.test.AcceptanceTest;
+import learner.moimmanager.support.test.DummyData;
 import learner.moimmanager.support.test.HtmlFormDataBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
+import javax.xml.ws.Response;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -27,18 +30,25 @@ public class GroupAcceptanceTest extends AcceptanceTest {
     @Before
     public void setUp() {
         HttpEntity<MultiValueMap<String, Object>> request = HtmlFormDataBuilder.urlEncodedForm()
-                .addParameter("name", "홍길동")
-                .addParameter("nickname", "하드러너")
-                .addParameter("email", "learner@hard.com")
+                .addParameter("name", "황다윗")
+                .addParameter("nickname", "소프트러너")
+                .addParameter("email", "learner@soft.com")
                 .addParameter("password", "password1234").build();
 
-        ResponseEntity<String> response = template.postForEntity("/users", request, String.class);
-        assertThat(response.getStatusCode(), is(HttpStatus.FOUND));
+        template.postForEntity("/users", request, String.class);
+
+        request = HtmlFormDataBuilder.urlEncodedForm()
+                .addParameter("name", "장요셉")
+                .addParameter("nickname", "이시대의한사람")
+                .addParameter("email", "jang@joseph.com")
+                .addParameter("password", "password1234").build();
+
+        template.postForEntity("/users", request, String.class);
     }
 
     @Test
     public void createForm() {
-        response = template.getForEntity("/groups", String.class);
+        response = template.getForEntity("/groups/create", String.class);
         assertThat(response.getStatusCode() ,is(HttpStatus.OK));
     }
 
@@ -51,8 +61,39 @@ public class GroupAcceptanceTest extends AcceptanceTest {
                 .addParameter("region", "부산")
                 .addParameter("connect_type", "online").build();
 
+        TestRestTemplate authTemplate = template.withBasicAuth("learner@soft.com", "password1234");
+        response = authTemplate.postForEntity("/groups/create", request, String.class);
+        assertThat(response.getStatusCode(),is(HttpStatus.FOUND));
+    }
+
+    @Test
+    public void list() {
+        HttpEntity<MultiValueMap<String, Object>> request = HtmlFormDataBuilder.urlEncodedForm()
+                .addParameter("name", "부경나비")
+                .addParameter("category", "독서")
+                .addParameter("region", "부산")
+                .addParameter("connect_type", "online").build();
+
+        TestRestTemplate authTemplate = template.withBasicAuth("learner@soft.com", "password1234");
+        response = authTemplate.postForEntity("/groups", request, String.class);
+
+        ResponseEntity<String> response = template.getForEntity("/", String.class);
+        assertThat(response.getBody().contains(DummyData.DEFAULT_GROUP.getName()),is(true));
+    }
+
+    @Test
+    public void join() {
+        HttpEntity<MultiValueMap<String, Object>> request = HtmlFormDataBuilder.urlEncodedForm()
+                .addParameter("name", "부경나비")
+                .addParameter("category", "독서")
+                .addParameter("region", "부산")
+                .addParameter("connect_type", "online").build();
+
         TestRestTemplate authTemplate = template.withBasicAuth("learner@hard.com", "password1234");
         response = authTemplate.postForEntity("/groups", request, String.class);
-        assertThat(response.getStatusCode(),is(HttpStatus.FOUND));
+
+        authTemplate = template.withBasicAuth("jang@joseph.com", "password1234");
+        response = authTemplate.getForEntity("/groups/1/join", String.class);
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
 }

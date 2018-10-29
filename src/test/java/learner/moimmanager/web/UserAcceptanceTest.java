@@ -47,9 +47,9 @@ public class UserAcceptanceTest {
     @Test
     public void signUp() {
         HttpEntity<MultiValueMap<String, Object>> request = HtmlFormDataBuilder.urlEncodedForm()
-                .addParameter("name", "홍길동")
+                .addParameter("name", "황러너")
                 .addParameter("nickname", "하드러너")
-                .addParameter("email", "hardlearner@gamil.com")
+                .addParameter("email", "learner@hard.com")
                 .addParameter("password", "password").build();
 
         ResponseEntity<String> response = template.postForEntity("/users", request, String.class);
@@ -58,7 +58,7 @@ public class UserAcceptanceTest {
 
     @Test
     public void login() {
-        TestRestTemplate authTemplate = template.withBasicAuth("hard@learner.com", "password1234");
+        TestRestTemplate authTemplate = template.withBasicAuth("learner@hard.com", "password1234");
         ResponseEntity<String> response = authTemplate.getForEntity("/", String.class);
 
         log.debug("response : {}", response.getBody());

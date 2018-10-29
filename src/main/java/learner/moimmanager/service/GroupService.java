@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class GroupService {
@@ -29,5 +30,9 @@ public class GroupService {
         groupRepository.save(openedGroup);
         userService.openGroup(leader, openedGroup);
         return null;
+    }
+
+    public List<Group> findAll() {
+        return groupRepository.findAll();
     }
 }

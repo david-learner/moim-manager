@@ -6,8 +6,14 @@
 <div class="container">
     <!--<div class="container-fluid">-->
     <div>
-        <a href="/groups" class="btn btn-purple">모임개설</a>
+        <a href="/groups/create" class="btn btn-purple">모임개설</a>
     </div>
+    {{#groups}}
+    <div>
+        <p>{{this.name}}</p>
+        <p><a href="/groups/{{this.id}}/join">가입요청</a></p>
+    </div>
+    {{/groups}}
 </div>
 {{> common/footer}}
 </body>
