@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GroupService {
@@ -34,5 +35,17 @@ public class GroupService {
 
     public List<Group> findAll() {
         return groupRepository.findAll();
+    }
+
+    public Group findOne(Long groupId) {
+        return groupRepository.findById(groupId).orElseThrow(NullPointerException::new);
+    }
+
+    public void join(User loginUser, Long groupId) {
+        groupRepository.findById(groupId).map(group -> {
+            group.joinRequestBy(loginUser);
+            groupRepository.save(group);
+            return group;
+        }).orElseThrow(NullPointerException::new);
     }
 }

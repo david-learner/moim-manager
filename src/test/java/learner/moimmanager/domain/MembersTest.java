@@ -9,12 +9,12 @@ import static org.junit.Assert.assertThat;
 public class MembersTest {
     @Test
     public void canCreate() {
-        Members members = new Members(DummyData.DEFAULT_DB_USER);
+        Members members = new Members(DummyData.DEFAULT_DB_LEADER);
     }
 
     @Test
     public void add() {
-        Members members = new Members(DummyData.DEFAULT_DB_USER);
+        Members members = new Members(DummyData.DEFAULT_DB_LEADER);
         User user = new User("황태원", "learner", "password", "learner@learn.er", Grade.NORMAL);
         assertThat(members.size(), is(0));
 
@@ -24,7 +24,7 @@ public class MembersTest {
 
     @Test
     public void size() {
-        Members members = new Members(DummyData.DEFAULT_DB_USER);
+        Members members = new Members(DummyData.DEFAULT_DB_LEADER);
         assertThat(members.size(), is(0));
     }
 }

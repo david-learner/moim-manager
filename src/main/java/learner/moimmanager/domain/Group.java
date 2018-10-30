@@ -14,7 +14,12 @@ public class Group {
     private User leader;
 
     @Embedded
-    private Members members;
+    @AssociationOverride(name = "members", joinTable = @JoinTable(name = "moim_group_joined_members"))
+    private Members joinedMembers;
+
+    @Embedded
+    @AssociationOverride(name = "members", joinTable = @JoinTable(name = "moim_group_join_waiting_members"))
+    private Members joinWaitingMembers;
 
     @Embedded
     private GroupProperties properties;
@@ -24,8 +29,15 @@ public class Group {
 
     public Group(User opener, GroupProperties properties) {
         leader = opener;
-        members = new Members(opener);
+        joinedMembers = new Members(opener);
+        // joinWaitingMembers는 무제한으로 대기할 수 있어야 한다
+        // 이미 가입 요청한 사람은 가입요청을 보낼 수 없다
+        joinWaitingMembers = new Members(opener);
         this.properties = properties;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
@@ -33,14 +45,20 @@ public class Group {
     }
 
     public int getMemberCount() {
-        return members.size();
+        return joinedMembers.size();
+    }
+
+    public int getJoinWaitingMemberCount() {
+        return joinWaitingMembers.size();
     }
 
     public void addMember(User user) {
-        if (members == null) {
-            members = new Members(user);
-        }
-        members.add(user);
+        joinedMembers.add(user);
+    }
+
+    public void joinRequestBy(User member) {
+        // TODO 이미 가입대기중일 때 어떻게 알려줄 것인가?
+        joinWaitingMembers.add(member);
     }
 
     @Override
@@ -48,7 +66,7 @@ public class Group {
         return "Group{" +
                 "id=" + id +
                 ", leader=" + leader +
-                ", members=" + members +
+                ", joinedMembers=" + joinedMembers +
                 ", properties=" + properties +
                 '}';
     }

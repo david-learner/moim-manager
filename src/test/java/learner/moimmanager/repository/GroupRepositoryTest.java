@@ -1,6 +1,5 @@
 package learner.moimmanager.repository;
 
-import learner.moimmanager.domain.Group;
 import learner.moimmanager.support.test.DummyData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,7 @@ public class GroupRepositoryTest {
 
     @Test
     public void findAll() {
-        userRepository.save(DummyData.DEFAULT_DB_USER);
+        userRepository.save(DummyData.DEFAULT_DB_LEADER);
         groupRepository.save(DummyData.DEFAULT_GROUP);
         assertThat(groupRepository.findAll().size(), is(1));
     }

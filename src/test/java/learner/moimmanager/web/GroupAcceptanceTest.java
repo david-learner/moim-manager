@@ -48,7 +48,8 @@ public class GroupAcceptanceTest extends AcceptanceTest {
 
     @Test
     public void createForm() {
-        response = template.getForEntity("/groups/create", String.class);
+        TestRestTemplate authTemplate = template.withBasicAuth("learner@hard.com", "password1234");
+        response = authTemplate.getForEntity("/groups/create", String.class);
         assertThat(response.getStatusCode() ,is(HttpStatus.OK));
     }
 
@@ -62,7 +63,7 @@ public class GroupAcceptanceTest extends AcceptanceTest {
                 .addParameter("connect_type", "online").build();
 
         TestRestTemplate authTemplate = template.withBasicAuth("learner@soft.com", "password1234");
-        response = authTemplate.postForEntity("/groups/create", request, String.class);
+        response = authTemplate.postForEntity("/groups", request, String.class);
         assertThat(response.getStatusCode(),is(HttpStatus.FOUND));
     }
 

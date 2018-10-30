@@ -1,9 +1,7 @@
 package learner.moimmanager.service;
 
-import learner.moimmanager.domain.Groups;
 import learner.moimmanager.domain.User;
 import learner.moimmanager.repository.UserRepository;
-import learner.moimmanager.security.Encryption;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_USER;
+import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_LEADER;
 import static learner.moimmanager.support.test.DummyData.DEFAULT_GROUP;
 import static learner.moimmanager.support.test.DummyData.DEFAULT_LOGIN_USER_DTO;
 import static org.hamcrest.CoreMatchers.is;
@@ -37,18 +35,18 @@ public class UserServiceTest {
     @Ignore
     @Test
     public void login() {
-        when(userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getEmail())).thenReturn(Optional.of(DEFAULT_DB_USER));
+        when(userRepository.findByEmail(DEFAULT_LOGIN_USER_DTO.getEmail())).thenReturn(Optional.of(DEFAULT_DB_LEADER));
         // Encryption내 encoder가 static이라서 Junit으로 테스트 불가능 -> PowerMock으로대체
-//        when(encoder.matches(DEFAULT_DB_USER.getPassword(), DEFAULT_DB_USER.getPassword())).thenReturn(true);
+//        when(encoder.matches(DEFAULT_DB_LEADER.getPassword(), DEFAULT_DB_LEADER.getPassword())).thenReturn(true);
         User dbUser = userService.login(DEFAULT_LOGIN_USER_DTO);
-        assertThat(DEFAULT_DB_USER, is(dbUser));
+        assertThat(DEFAULT_DB_LEADER, is(dbUser));
 
     }
 
     @Test
     public void openGroup() {
-        when(userRepository.save(DEFAULT_DB_USER)).thenReturn(DEFAULT_DB_USER);
+        when(userRepository.save(DEFAULT_DB_LEADER)).thenReturn(DEFAULT_DB_LEADER);
 
-        userService.openGroup(DEFAULT_DB_USER, DEFAULT_GROUP);
+        userService.openGroup(DEFAULT_DB_LEADER, DEFAULT_GROUP);
     }
 }

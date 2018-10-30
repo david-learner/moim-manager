@@ -1,25 +1,26 @@
 package learner.moimmanager.domain;
 
-import javax.persistence.Embeddable;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Embeddable
 public class Members {
 
     @OneToMany
-    private List<User> members;
+    private Set<User> members;
 
     public Members() {
     }
 
     public Members(User leader) {
-        members = new ArrayList<>(leader.getCapacity());
+        members = new HashSet<>(leader.getCapacity());
     }
 
-    public void add(User user) {
-        members.add(user);
+    public void add(User member) {
+        members.add(member);
     }
 
     public int size() {
