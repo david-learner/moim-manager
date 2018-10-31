@@ -97,4 +97,10 @@ public class GroupAcceptanceTest extends AcceptanceTest {
         response = authTemplate.getForEntity("/groups/1/join", String.class);
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
+
+    @Test
+    public void home() {
+        ResponseEntity<String> response = template.getForEntity("/groups/1", String.class);
+        assertThat(response.getBody().contains("부경나비"), is(true));
+    }
 }

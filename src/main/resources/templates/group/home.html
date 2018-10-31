@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> common/header}}
+<body>
+{{> common/navbar}}
+<div class="container">
+    <div class="justify-content-center p-3">
+        <div><p>모임장 : {{group.leader.name}}</p></div>
+
+        <div><p>회원 :
+            {{#group.joinedMembersName}}
+            {{this}}&nbsp;
+            {{/group.joinedMembersName}}
+        </p></div>
+
+        <div><p>가입대기 :
+            {{#group.joinWaitingMembersName}}
+            {{this}}&nbsp;
+            {{/group.joinWaitingMembersName}}
+        </p></div>
+
+    </div>
+</div>
+{{> common/footer}}
+</body>
+</html>

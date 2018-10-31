@@ -43,4 +43,10 @@ public class GroupController {
         groupService.join(loginUser, id);
         return "redirect:/";
     }
+
+    @GetMapping("/{id}")
+    public String home(@PathVariable Long id, Model model) {
+        model.addAttribute("group", groupService.findOne(id));
+        return "/group/home";
+    }
 }

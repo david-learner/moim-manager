@@ -1,6 +1,7 @@
 package learner.moimmanager.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "moim_group")
@@ -30,8 +31,8 @@ public class Group {
     public Group(User opener, GroupProperties properties) {
         leader = opener;
         joinedMembers = new Members(opener);
-        // joinWaitingMembers는 무제한으로 대기할 수 있어야 한다
-        // 이미 가입 요청한 사람은 가입요청을 보낼 수 없다
+        // TODO joinWaitingMembers는 무제한으로 대기할 수 있어야 한다
+        // TODO 이미 가입 요청한 사람은 가입요청을 보낼 수 없다
         joinWaitingMembers = new Members(opener);
         this.properties = properties;
     }
@@ -40,12 +41,24 @@ public class Group {
         return id;
     }
 
+    public User getLeader() {
+        return leader;
+    }
+
     public String getName() {
         return properties.getName();
     }
 
     public int getMemberCount() {
         return joinedMembers.size();
+    }
+
+    public List<String> getJoinedMembersName() {
+        return joinedMembers.getMembersName();
+    }
+
+    public List<String> getJoinWaitingMembersName() {
+        return joinWaitingMembers.getMembersName();
     }
 
     public int getJoinWaitingMemberCount() {
