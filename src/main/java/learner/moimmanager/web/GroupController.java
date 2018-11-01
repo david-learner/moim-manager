@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("groups")
@@ -48,5 +49,11 @@ public class GroupController {
     public String home(@PathVariable Long id, Model model) {
         model.addAttribute("group", groupService.findOne(id));
         return "/group/home";
+    }
+
+    @GetMapping("/{groupId}/joinWaitingMember/{memberId}/accept")
+    public String accept(@PathVariable Long groupId, @PathVariable Long memberId) {
+        groupService.accept(groupId, memberId);
+        return "redirect:/groups/"+groupId;
     }
 }

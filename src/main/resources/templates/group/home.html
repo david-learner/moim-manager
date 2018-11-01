@@ -14,9 +14,10 @@
         </p></div>
 
         <div><p>가입대기 :
-            {{#group.joinWaitingMembersName}}
-            {{this}}&nbsp;
-            {{/group.joinWaitingMembersName}}
+            {{#group.joinWaitingMembers.members}}
+            <!-- TODO 가입수락했을 때 요청보낼 url 만들고 해당 사항 처리하기 -->
+            <p>{{name}} <a href="/groups/{{group.id}}/joinWaitingMember/{{id}}/accept">가입수락</a></p>&nbsp;
+            {{/group.joinWaitingMembers.members}}
         </p></div>
 
     </div>

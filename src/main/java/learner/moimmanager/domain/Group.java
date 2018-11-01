@@ -57,8 +57,8 @@ public class Group {
         return joinedMembers.getMembersName();
     }
 
-    public List<String> getJoinWaitingMembersName() {
-        return joinWaitingMembers.getMembersName();
+    public Members getJoinWaitingMembers() {
+        return joinWaitingMembers;
     }
 
     public int getJoinWaitingMemberCount() {
@@ -82,5 +82,13 @@ public class Group {
                 ", joinedMembers=" + joinedMembers +
                 ", properties=" + properties +
                 '}';
+    }
+
+    public void accept(User joinWaitingMember) {
+        // TODO 만약 !ifPresent일 때 NPE를 어떻게 발생시킬 것인가?
+        joinWaitingMembers.getMembers().stream().filter(user -> user.equals(joinWaitingMember)).findAny().ifPresent(user -> {
+            joinedMembers.add(user);
+            joinWaitingMembers.remove(user);
+        });
     }
 }

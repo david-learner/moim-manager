@@ -30,4 +30,13 @@ public class GroupTest {
         DEFAULT_GROUP.joinRequestBy(DEFAULT_DB_MEMBER);
         assertThat(DEFAULT_GROUP.getJoinWaitingMemberCount(), is(1));
     }
+
+    @Test
+    public void accept() {
+        DEFAULT_GROUP.joinRequestBy(DEFAULT_DB_MEMBER);
+        DEFAULT_GROUP.accept(DEFAULT_DB_MEMBER);
+        assertThat(DEFAULT_GROUP.getJoinWaitingMemberCount(), is(0));
+        assertThat(DEFAULT_GROUP.getMemberCount(), is(1));
+
+    }
 }

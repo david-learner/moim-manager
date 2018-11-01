@@ -28,9 +28,9 @@ public class GroupService {
         log.debug("GroupProperties : {}", properties.toString());
         Group openedGroup = new Group(leader, properties);
         // TODO 제약조건 위반하지 않게 cascade 설정 다시하기, 현재는 save가 먼저 되어야 함
-        groupRepository.save(openedGroup);
+        openedGroup = groupRepository.save(openedGroup);
         userService.openGroup(leader, openedGroup);
-        return null;
+        return openedGroup;
     }
 
     public List<Group> findAll() {
@@ -47,5 +47,9 @@ public class GroupService {
             groupRepository.save(group);
             return group;
         }).orElseThrow(NullPointerException::new);
+    }
+
+    public void accept(Long groupId, Long memberId) {
+        groupRepository.findById(groupId).ifPresent( group -> group.accept(userService.getOne(memberId)));
     }
 }

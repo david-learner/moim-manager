@@ -24,7 +24,7 @@ public class GroupRepositoryTest {
 
     @Test
     public void findAll() {
-        userRepository.save(DummyData.DEFAULT_DB_LEADER);
+        userRepository.save(DummyData.DEFAULT_DB_MEMBER);
         groupRepository.save(DummyData.DEFAULT_GROUP);
         assertThat(groupRepository.findAll().size(), is(1));
     }

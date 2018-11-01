@@ -40,4 +40,8 @@ public class UserService {
         leader.addOpendGroup(opendGroup);
         userRepository.save(leader);
     }
+
+    public User getOne(Long id) {
+        return userRepository.findById(id).orElseThrow(NullPointerException::new);
+    }
 }

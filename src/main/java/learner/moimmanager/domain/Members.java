@@ -28,6 +28,10 @@ public class Members {
         return members.size();
     }
 
+    public Set<User> getMembers() {
+        return members;
+    }
+
     @Override
     public String toString() {
         return "Members{" +
@@ -37,5 +41,9 @@ public class Members {
 
     public List<String> getMembersName() {
         return members.stream().map(User::getName).collect(Collectors.toList());
+    }
+
+    public void remove(User member) {
+        members.remove(member);
     }
 }
