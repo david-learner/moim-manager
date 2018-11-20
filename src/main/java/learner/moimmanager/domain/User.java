@@ -25,12 +25,12 @@ public class User {
     @Column(length = 60, nullable = false, unique = true)
     private String email;
 
-    // TODO openedGroups, joinedGroups를 설계적으로 잘 합칠 방법이 없는지 더 고민하기
-
     @Embedded
+    @AssociationOverride(name = "groups", joinTable = @JoinTable(name = "moim_group_opened_groups"))
     private Groups openedGroups;
 
     @Embedded
+    @AssociationOverride(name = "groups", joinTable = @JoinTable(name = "moim_group_joined_groups"))
     private Groups joinedGroups;
 
     @Enumerated(EnumType.STRING)
@@ -97,7 +97,6 @@ public class User {
                 '}';
     }
 
-    // 왜 opendGroups를 리턴하는가? 현재 가입된 모임의 개수를 DB를 거치지 않고 바로 알 수 있고, 테스트 용이성
     public Groups addOpendGroup(Group openedGroup) {
         openedGroups.add(openedGroup);
         return openedGroups;

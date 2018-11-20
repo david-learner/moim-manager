@@ -26,13 +26,7 @@ public class UserService {
     }
 
     public User login(LoginUserDto loginUserDto) {
-//        User dbUser = userRepository.findByEmail(loginUserDto.getEmail()).orElseThrow(NullPointerException::new);
-//
-//        if(!dbUser.matches(loginUserDto)) {
-//            // todo 아이디비밀번호 불일치 exception
-//            throw new IllegalArgumentException("User not matches");
-//        }
-//        return dbUser;
+        // todo 아이디비밀번호 불일치 exception
         return userRepository.findByEmail(loginUserDto.getEmail()).filter(u -> u.matches(loginUserDto)).orElseThrow(IllegalArgumentException::new);
     }
 
@@ -43,5 +37,9 @@ public class UserService {
 
     public User getOne(Long id) {
         return userRepository.findById(id).orElseThrow(NullPointerException::new);
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 }

@@ -47,9 +47,9 @@ public class UserAcceptanceTest {
     @Test
     public void signUp() {
         HttpEntity<MultiValueMap<String, Object>> request = HtmlFormDataBuilder.urlEncodedForm()
-                .addParameter("name", "김다윗")
-                .addParameter("nickname", "소프트러너")
-                .addParameter("email", "learner@soft.com")
+                .addParameter("name", "남상코")
+                .addParameter("nickname", "상코")
+                .addParameter("email", "sangco@nam.com")
                 .addParameter("password", "password1234").build();
 
         ResponseEntity<String> response = template.postForEntity("/users", request, String.class);

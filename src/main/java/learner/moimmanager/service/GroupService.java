@@ -5,9 +5,11 @@ import learner.moimmanager.domain.Group;
 import learner.moimmanager.domain.GroupProperties;
 import learner.moimmanager.domain.User;
 import learner.moimmanager.repository.GroupRepository;
+import learner.moimmanager.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,13 +26,15 @@ public class GroupService {
     @Resource(name = "userService")
     private UserService userService;
 
-    public Group create(User leader, GroupProperties properties) {
+    @Resource(name = "userRepository")
+    private UserRepository userRepository;
+
+    public void create(User leader, GroupProperties properties) {
         log.debug("GroupProperties : {}", properties.toString());
         Group openedGroup = new Group(leader, properties);
         // TODO 제약조건 위반하지 않게 cascade 설정 다시하기, 현재는 save가 먼저 되어야 함
         openedGroup = groupRepository.save(openedGroup);
         userService.openGroup(leader, openedGroup);
-        return openedGroup;
     }
 
     public List<Group> findAll() {
@@ -49,7 +53,20 @@ public class GroupService {
         }).orElseThrow(NullPointerException::new);
     }
 
+    @Transactional
     public void accept(Long groupId, Long memberId) {
-        groupRepository.findById(groupId).ifPresent( group -> group.accept(userService.getOne(memberId)));
+//        groupRepository.findById(groupId).ifPresent( group -> {
+//            User dbUser = userService.getOne(memberId);
+//            group.accept(dbUser);
+//            dbUser.addOpendGroup(group);
+//            groupRepository.save(group);
+//            userRepository.save(dbUser);
+//        });
+        Group group = groupRepository.findById(groupId).orElseThrow(NullPointerException::new);
+        User dbUser = userRepository.findById(memberId).orElseThrow(NullPointerException::new);
+        group.accept(dbUser);
+        dbUser.addJoinedGroup(group);
+        userRepository.save(dbUser);
+        groupRepository.save(group);
     }
 }

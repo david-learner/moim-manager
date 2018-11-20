@@ -31,7 +31,7 @@ public class Group {
     public Group(User opener, GroupProperties properties) {
         leader = opener;
         joinedMembers = new Members(opener);
-        // TODO joinWaitingMembers는 무제한으로 대기할 수 있어야 한다
+        // TODO joinWaitingMembers는 적정인원으로 대기할 수 있어야 한다
         // TODO 이미 가입 요청한 사람은 가입요청을 보낼 수 없다
         joinWaitingMembers = new Members(opener);
         this.properties = properties;

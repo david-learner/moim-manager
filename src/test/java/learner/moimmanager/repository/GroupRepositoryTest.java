@@ -1,6 +1,7 @@
 package learner.moimmanager.repository;
 
-import learner.moimmanager.support.test.DummyData;
+import learner.moimmanager.domain.Group;
+import static learner.moimmanager.support.test.DummyData.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class GroupRepositoryTest {
 
     @Test
     public void findAll() {
-        userRepository.save(DummyData.DEFAULT_DB_MEMBER);
-        groupRepository.save(DummyData.DEFAULT_GROUP);
+        userRepository.save(DEFAULT_DB_MEMBER);
+        groupRepository.save(new Group(DEFAULT_DB_MEMBER, DEFAULT_GROUP_PROPERTIES));
         assertThat(groupRepository.findAll().size(), is(1));
     }
 }

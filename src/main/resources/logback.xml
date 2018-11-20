@@ -10,6 +10,10 @@
     <!-- 자바 패키지별 log level을 설정한다. -->
     <logger name="learner.moimmanager" level="DEBUG" />
 
+    <!-- JPA -->
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.type" level="TRACE" />
+
     <!-- 기본 log level을 설정한다. -->
     <root level="INFO">
         <appender-ref ref="STDOUT" />

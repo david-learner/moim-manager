@@ -40,7 +40,6 @@ public class GroupController {
 
     @GetMapping("/{id}/join")
     public String join(@LoginUser User loginUser, @PathVariable Long id) {
-        log.debug("id : {}", id);
         groupService.join(loginUser, id);
         return "redirect:/";
     }

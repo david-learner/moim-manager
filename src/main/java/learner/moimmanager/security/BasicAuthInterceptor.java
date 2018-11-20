@@ -1,24 +1,20 @@
 package learner.moimmanager.security;
 
-import com.mysql.jdbc.util.Base64Decoder;
-import com.sun.xml.internal.org.jvnet.staxex.Base64EncoderStream;
 import learner.moimmanager.domain.User;
 import learner.moimmanager.dto.LoginUserDto;
 import learner.moimmanager.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.Charset;
 import java.util.Base64;
 
 public class BasicAuthInterceptor extends HandlerInterceptorAdapter {
-    private static final Logger log =  LoggerFactory.getLogger(BasicAuthInterceptor.class);
+    private static final Logger log = LoggerFactory.getLogger(BasicAuthInterceptor.class);
 
     @Autowired
     private UserService userService;
@@ -29,7 +25,7 @@ public class BasicAuthInterceptor extends HandlerInterceptorAdapter {
         log.debug("Authorization : {}", authorization);
 
         // authoziation 필드가 비어있거나 Type이 Basic이 아니면 그냥 리턴
-        if(authorization == null || !authorization.startsWith("Basic")) {
+        if (authorization == null || !authorization.startsWith("Basic")) {
             return true;
         }
 

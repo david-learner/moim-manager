@@ -58,9 +58,6 @@ public class GroupAcceptanceTest extends AcceptanceTest {
 
     @Test
     public void create() {
-        // 멀티밸류맵으로 넘기기, 객체로 넘기려면 불필요한 생성자가 있어야 한다.
-
-
         TestRestTemplate authTemplate = template.withBasicAuth("learner@soft.com", "password1234");
         response = authTemplate.postForEntity("/groups", request, String.class);
         assertThat(response.getStatusCode(), is(HttpStatus.FOUND));
@@ -90,6 +87,7 @@ public class GroupAcceptanceTest extends AcceptanceTest {
         TestRestTemplate authTemplate = template.withBasicAuth("learner@hard.com", "password1234");
         authTemplate.postForEntity("/groups", request, String.class);
         ResponseEntity<String> response = template.getForEntity("/groups/1", String.class);
+        log.debug("reponse body : {}", response.getBody());
         assertThat(response.getBody().contains("부경나비"), is(true));
     }
 

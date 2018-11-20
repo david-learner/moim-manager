@@ -4,22 +4,34 @@ import static learner.moimmanager.support.test.DummyData.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import learner.moimmanager.domain.Group;
+import learner.moimmanager.repository.GroupRepository;
+import learner.moimmanager.repository.UserRepository;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
+@RunWith(SpringRunner.class)
 public class GroupServiceTest {
 
     @InjectMocks
     private GroupService groupService;
 
+    @Mock
+    private GroupRepository groupRepository;
+
     @Test
     public void findOne() {
-        when(groupService.create(DEFAULT_DB_LEADER, DEFAULT_GROUP_PROPERTIES)).thenReturn(DEFAULT_GROUP);
-        groupService.create(DEFAULT_DB_LEADER, DEFAULT_GROUP_PROPERTIES);
+        when(groupRepository.findById(1L)).thenReturn(Optional.of(DEFAULT_GROUP));
         assertNotNull(groupService.findOne(1L));
     }
 

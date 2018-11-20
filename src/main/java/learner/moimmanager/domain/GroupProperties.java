@@ -15,7 +15,7 @@ public class GroupProperties {
     @Column(length = 9, nullable = false)
     private String connect_type;
 
-    @Column(length = 5, nullable = false, unique = true)
+    @Column(length = 5, nullable = false)
     private String region;
 
     public GroupProperties() {
