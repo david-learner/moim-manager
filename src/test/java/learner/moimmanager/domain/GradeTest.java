@@ -7,7 +7,17 @@ import static org.junit.Assert.assertThat;
 
 public class GradeTest {
     @Test
-    public void getGroupMemberCapacity() {
-        assertThat(Grade.NORMAL.getCapacity(), is(10));
+    public void getGroupOpenCapacity_NORMAL_GRADE() {
+        assertThat(Grade.NORMAL.getOpenCapacity(), is(10));
+    }
+
+    @Test
+    public void getGroupJoinCapacity_NORMAL_GRADE() {
+        assertThat(Grade.NORMAL.getJoinCapacity(), is(5));
+    }
+
+    @Test
+    public void getMemberCapacity_NORMAL_GRADE() {
+        assertThat(Grade.NORMAL.getMemberCapacity(), is(10));
     }
 }

@@ -13,11 +13,6 @@ public class GroupsTest {
     }
 
     @Test
-    public void limitedGroupsCapacity() {
-        Groups groups = new Groups(Grade.NORMAL.getCapacity());
-    }
-
-    @Test
     public void add() {
         Groups groups = new Groups();
         groups.add(DEFAULT_GROUP);

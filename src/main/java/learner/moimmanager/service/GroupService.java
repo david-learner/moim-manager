@@ -29,12 +29,12 @@ public class GroupService {
     @Resource(name = "userRepository")
     private UserRepository userRepository;
 
-    public void create(User leader, GroupProperties properties) {
+    public void create(User opener, GroupProperties properties) {
         log.debug("GroupProperties : {}", properties.toString());
-        Group openedGroup = new Group(leader, properties);
+        Group openedGroup = new Group(opener, properties);
         // TODO 제약조건 위반하지 않게 cascade 설정 다시하기, 현재는 save가 먼저 되어야 함
         openedGroup = groupRepository.save(openedGroup);
-        userService.openGroup(leader, openedGroup);
+        userService.openGroup(opener, openedGroup);
     }
 
     public List<Group> findAll() {

@@ -47,6 +47,8 @@ public class UserTest {
 
     @Test
     public void getCapacity() {
-        assertThat(DEFAULT_DB_LEADER.getCapacity(), is(10));
+        assertThat(DEFAULT_DB_LEADER.getMemberCapacity(), is(10));
     }
+
+
 }

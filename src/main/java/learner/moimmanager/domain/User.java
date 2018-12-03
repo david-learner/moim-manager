@@ -45,8 +45,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.grade = grade;
-        openedGroups = new Groups(grade.getCapacity());
-        joinedGroups = new Groups(grade.getCapacity());
+        openedGroups = new Groups(grade.getOpenCapacity());
+        joinedGroups = new Groups(grade.getJoinCapacity());
     }
 
     public String getName() {
@@ -107,8 +107,8 @@ public class User {
         return joinedGroups;
     }
 
-    public int getCapacity() {
-        return grade.getCapacity();
+    public int getMemberCapacity() {
+        return grade.getMemberCapacity();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package learner.moimmanager.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +16,7 @@ public class Members {
     }
 
     public Members(User leader) {
-        members = new HashSet<>(leader.getCapacity());
+        members = new HashSet<>(leader.getMemberCapacity());
     }
 
     public void add(User member) {
