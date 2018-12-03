@@ -2,6 +2,9 @@ package learner.moimmanager.domain;
 
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static learner.moimmanager.support.test.DummyData.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -29,6 +32,12 @@ public class GroupTest {
     public void joinRequestBy() {
         DEFAULT_GROUP.joinRequestBy(DEFAULT_DB_MEMBER);
         assertThat(DEFAULT_GROUP.getJoinWaitingMemberCount(), is(1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void joinRequestBySameUser() {
+        DEFAULT_GROUP.joinRequestBy(DEFAULT_DB_MEMBER);
+        DEFAULT_GROUP.joinRequestBy(DEFAULT_DB_MEMBER);
     }
 
     @Test

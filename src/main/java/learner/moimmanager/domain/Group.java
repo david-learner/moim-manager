@@ -70,8 +70,11 @@ public class Group {
     }
 
     public void joinRequestBy(User member) {
-        // TODO 이미 가입대기중일 때 어떻게 알려줄 것인가?
         joinWaitingMembers.add(member);
+    }
+
+    public boolean matchLeader(User user) {
+        return leader.equals(user);
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.List;
 @Embeddable
 public class Groups {
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ManyToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Group> groups;

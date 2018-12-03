@@ -26,11 +26,11 @@ public class User {
     private String email;
 
     @Embedded
-    @AssociationOverride(name = "groups", joinTable = @JoinTable(name = "moim_group_opened_groups"))
+    @AssociationOverride(name = "groups", joinTable = @JoinTable(name = "moim_member_opened_groups"))
     private Groups openedGroups;
 
     @Embedded
-    @AssociationOverride(name = "groups", joinTable = @JoinTable(name = "moim_group_joined_groups"))
+    @AssociationOverride(name = "groups", joinTable = @JoinTable(name = "moim_member_joined_groups"))
     private Groups joinedGroups;
 
     @Enumerated(EnumType.STRING)

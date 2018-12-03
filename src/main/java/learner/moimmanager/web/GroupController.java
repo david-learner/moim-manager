@@ -51,8 +51,8 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}/joinWaitingMember/{memberId}/accept")
-    public String accept(@PathVariable Long groupId, @PathVariable Long memberId) {
-        groupService.accept(groupId, memberId);
+    public String accept(@LoginUser User acceptor, @PathVariable Long groupId, @PathVariable Long memberId) {
+        groupService.accept(acceptor, groupId, memberId);
         return "redirect:/groups/"+groupId;
     }
 }

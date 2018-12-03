@@ -54,15 +54,11 @@ public class GroupService {
     }
 
     @Transactional
-    public void accept(Long groupId, Long memberId) {
-//        groupRepository.findById(groupId).ifPresent( group -> {
-//            User dbUser = userService.getOne(memberId);
-//            group.accept(dbUser);
-//            dbUser.addOpendGroup(group);
-//            groupRepository.save(group);
-//            userRepository.save(dbUser);
-//        });
+    public void accept(User acceptor, Long groupId, Long memberId) {
         Group group = groupRepository.findById(groupId).orElseThrow(NullPointerException::new);
+        if(!group.matchLeader(acceptor)) {
+            throw new IllegalArgumentException("Only leader can accept join request");
+        }
         User dbUser = userRepository.findById(memberId).orElseThrow(NullPointerException::new);
         group.accept(dbUser);
         dbUser.addJoinedGroup(group);

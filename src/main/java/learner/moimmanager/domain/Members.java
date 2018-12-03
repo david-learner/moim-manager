@@ -21,6 +21,9 @@ public class Members {
     }
 
     public void add(User member) {
+        if (members.contains(member)) {
+            throw new IllegalArgumentException("Already join is requested");
+        }
         members.add(member);
     }
 
