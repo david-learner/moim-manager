@@ -124,4 +124,9 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+    public boolean canOpenGroup() {
+        System.out.println("size : " + openedGroups.size() + " grade capacity" + grade.getOpenCapacity());
+        return openedGroups.size() < grade.getOpenCapacity();
+    }
 }

@@ -9,12 +9,12 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import javax.xml.bind.annotation.XmlType;
+
 import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_LEADER;
 import static learner.moimmanager.support.test.DummyData.DEFAULT_GROUP;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Encryption.class)
@@ -46,9 +46,21 @@ public class UserTest {
     }
 
     @Test
-    public void getCapacity() {
+    public void getMemberCapacity() {
         assertThat(DEFAULT_DB_LEADER.getMemberCapacity(), is(10));
     }
 
+    @Test
+    public void canOpenGroup() {
+        assertTrue(DEFAULT_DB_LEADER.canOpenGroup());
+    }
 
+    @Test
+    public void cannotOpenGroup() {
+        // Normal User's opened group max size is 10
+        for (int count = 0; count < 10; count++) {
+            DEFAULT_DB_LEADER.addOpendGroup(new Group());
+        }
+        assertFalse(DEFAULT_DB_LEADER.canOpenGroup());
+    }
 }
