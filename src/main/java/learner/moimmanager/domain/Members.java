@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 public class Members {
 
     @OneToMany
-    private Set<User> members;
+    private Set<Member> members;
 
     public Members() {
     }
 
-    public Members(User leader) {
+    public Members(Member leader) {
         members = new HashSet<>(leader.getMemberCapacity());
     }
 
-    public void add(User member) {
+    public void add(Member member) {
         if (members.contains(member)) {
             throw new IllegalArgumentException("Already join is requested");
         }
@@ -30,7 +30,7 @@ public class Members {
         return members.size();
     }
 
-    public Set<User> getMembers() {
+    public Set<Member> getMembers() {
         return members;
     }
 
@@ -42,10 +42,10 @@ public class Members {
     }
 
     public List<String> getMembersName() {
-        return members.stream().map(User::getName).collect(Collectors.toList());
+        return members.stream().map(Member::getName).collect(Collectors.toList());
     }
 
-    public void remove(User member) {
+    public void remove(Member member) {
         members.remove(member);
     }
 }

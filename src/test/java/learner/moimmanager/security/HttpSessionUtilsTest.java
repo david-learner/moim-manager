@@ -1,6 +1,6 @@
 package learner.moimmanager.security;
 
-import learner.moimmanager.domain.User;
+import learner.moimmanager.domain.Member;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class HttpSessionUtilsTest {
-    private static String SESSION_LOGIN_USER_KEY = "loginUser";
+    private static String SESSION_LOGIN_USER_KEY = "loginMember";
 
     @Test
     public void isLoginUser() {
@@ -30,7 +30,7 @@ public class HttpSessionUtilsTest {
         NativeWebRequest request = mock(NativeWebRequest.class);
         request.setAttribute(SESSION_LOGIN_USER_KEY, DEFAULT_DB_LEADER, RequestAttributes.SCOPE_SESSION);
 
-        Optional<User> maybeUser = Optional.ofNullable(DEFAULT_DB_LEADER);
+        Optional<Member> maybeUser = Optional.ofNullable(DEFAULT_DB_LEADER);
         when(HttpSessionUtils.getUserFromSession(request)).thenReturn(maybeUser);
         assertThat(maybeUser.get().getName(), is("황러너"));
     }

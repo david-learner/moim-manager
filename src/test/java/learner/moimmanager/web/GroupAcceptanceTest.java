@@ -43,7 +43,7 @@ public class GroupAcceptanceTest extends AcceptanceTest {
         template.postForEntity("/users", requestUserData, String.class);
 
         request = HtmlFormDataBuilder.urlEncodedForm()
-                .addParameter("name", "부경나비")
+                .addParameter("name", "트레바리")
                 .addParameter("category", "독서")
                 .addParameter("region", "부산")
                 .addParameter("connect_type", "online").build();
@@ -101,6 +101,8 @@ public class GroupAcceptanceTest extends AcceptanceTest {
         response = authTemplate.getForEntity("/groups/1/join", String.class);
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
 
+        // 모임장 로그인 상태에서 수락 요청 가능
+        authTemplate = template.withBasicAuth("learner@hard.com", "password1234");
         response = authTemplate.getForEntity("/groups/1/joinWaitingMember/1/accept", String.class);
         assertThat(response.getBody().contains("모임장"), is(true));
     }

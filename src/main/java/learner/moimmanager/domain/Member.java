@@ -1,6 +1,6 @@
 package learner.moimmanager.domain;
 
-import learner.moimmanager.dto.LoginUserDto;
+import learner.moimmanager.dto.LoginMemberDto;
 import learner.moimmanager.security.Encryption;
 
 import javax.persistence.*;
@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "moim_member")
-public class User {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,10 +36,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Grade grade;
 
-    public User() {
+    public Member() {
     }
 
-    public User(String name, String nickName, String password, String email, Grade grade) {
+    public Member(String name, String nickName, String password, String email, Grade grade) {
         this.name = name;
         this.nickName = nickName;
         this.password = password;
@@ -73,13 +73,13 @@ public class User {
         return grade;
     }
 
-    public boolean matches(LoginUserDto loginUserDto) {
-        if (!this.email.equals(loginUserDto.getEmail())) {
+    public boolean matches(LoginMemberDto loginMemberDto) {
+        if (!this.email.equals(loginMemberDto.getEmail())) {
             // todo id, pw 일치하지 않는 예외 만들기
             throw new IllegalArgumentException("id가 일치하지 않습니다.");
         }
 
-        if (!Encryption.matches(loginUserDto.getPassword(), password)) {
+        if (!Encryption.matches(loginMemberDto.getPassword(), password)) {
             // todo id, pw 일치하지 않는 예외 만들기
             throw new IllegalArgumentException("pw가 일치하지 않습니다.");
         }
@@ -88,7 +88,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Member{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", nickName='" + nickName + '\'' +
@@ -115,9 +115,9 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(name, user.name);
+        Member member = (Member) o;
+        return Objects.equals(id, member.id) &&
+                Objects.equals(name, member.name);
     }
 
     @Override

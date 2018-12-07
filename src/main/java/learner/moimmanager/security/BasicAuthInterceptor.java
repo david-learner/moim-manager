@@ -1,8 +1,8 @@
 package learner.moimmanager.security;
 
-import learner.moimmanager.domain.User;
-import learner.moimmanager.dto.LoginUserDto;
-import learner.moimmanager.service.UserService;
+import learner.moimmanager.domain.Member;
+import learner.moimmanager.dto.LoginMemberDto;
+import learner.moimmanager.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class BasicAuthInterceptor extends HandlerInterceptorAdapter {
     private static final Logger log = LoggerFactory.getLogger(BasicAuthInterceptor.class);
 
     @Autowired
-    private UserService userService;
+    private MemberService memberService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -36,8 +36,8 @@ public class BasicAuthInterceptor extends HandlerInterceptorAdapter {
         log.debug("password : {}", values[1]);
 
         try {
-            User user = userService.login(new LoginUserDto(values[0], values[1]));
-            request.getSession().setAttribute(HttpSessionUtils.SESSION_LOGIN_USER_KEY, user);
+            Member member = memberService.login(new LoginMemberDto(values[0], values[1]));
+            request.getSession().setAttribute(HttpSessionUtils.SESSION_LOGIN_MEMBER_KEY, member);
             return true;
         } catch (Exception e) {
             return true;

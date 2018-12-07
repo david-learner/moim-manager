@@ -1,6 +1,6 @@
 package learner.moimmanager.domain;
 
-import learner.moimmanager.dto.LoginUserDto;
+import learner.moimmanager.dto.LoginMemberDto;
 import learner.moimmanager.security.Encryption;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,8 +9,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import javax.xml.bind.annotation.XmlType;
-
 import static learner.moimmanager.support.test.DummyData.DEFAULT_DB_LEADER;
 import static learner.moimmanager.support.test.DummyData.DEFAULT_GROUP;
 import static org.hamcrest.Matchers.is;
@@ -18,26 +16,26 @@ import static org.junit.Assert.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Encryption.class)
-public class UserTest {
+public class MemberTest {
     @Test
     public void create() {
-        User guest = new User();
+        Member guest = new Member();
         assertNull(guest.getName());
     }
 
     @Test
     public void getMemberGrade() {
-        User normalUser = new User("황태원", "learner", "password", "learner@learn.er", Grade.NORMAL);
-        assertThat(normalUser.getGrade(), is(Grade.NORMAL));
+        Member normalMember = new Member("황태원", "learner", "password", "learner@learn.er", Grade.NORMAL);
+        assertThat(normalMember.getGrade(), is(Grade.NORMAL));
     }
 
     @Test
     public void match() {
         PowerMockito.mockStatic(Encryption.class);
 
-        LoginUserDto loginUserDto = new LoginUserDto("learner@hard.com", "password1234");
-        BDDMockito.given(Encryption.matches(loginUserDto.getPassword(), DEFAULT_DB_LEADER.getPassword())).willReturn(true);
-        assertTrue(DEFAULT_DB_LEADER.matches(loginUserDto));
+        LoginMemberDto loginMemberDto = new LoginMemberDto("learner@hard.com", "password1234");
+        BDDMockito.given(Encryption.matches(loginMemberDto.getPassword(), DEFAULT_DB_LEADER.getPassword())).willReturn(true);
+        assertTrue(DEFAULT_DB_LEADER.matches(loginMemberDto));
     }
 
     @Test
@@ -57,7 +55,7 @@ public class UserTest {
 
     @Test
     public void cannotOpenGroup() {
-        // Normal User's opened group max size is 10
+        // Normal Member's opened group max size is 10
         for (int count = 0; count < 10; count++) {
             DEFAULT_DB_LEADER.addOpendGroup(new Group());
         }

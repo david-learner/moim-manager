@@ -17,10 +17,10 @@ public class MembersTest {
     @Test
     public void add() {
         Members members = new Members(DEFAULT_DB_LEADER);
-        User user = new User("황러너", "learner", "password", "learner@learn.er", Grade.NORMAL);
+        Member member = new Member("황러너", "learner", "password", "learner@learn.er", Grade.NORMAL);
         assertThat(members.size(), is(0));
 
-        members.add(user);
+        members.add(member);
         assertThat(members.size(), is(1));
     }
 
@@ -33,10 +33,10 @@ public class MembersTest {
     @Test
     public void getMembersNames() {
         Members members = new Members(DEFAULT_DB_LEADER);
-        User user1 = new User("남상코", "sangco", "password", "sangco@nam.com", Grade.NORMAL);
-        User user2 = new User("고링크", "link", "password", "link@go.com", Grade.NORMAL);
-        members.add(user1);
-        members.add(user2);
+        Member member1 = new Member("남상코", "sangco", "password", "sangco@nam.com", Grade.NORMAL);
+        Member member2 = new Member("고링크", "link", "password", "link@go.com", Grade.NORMAL);
+        members.add(member1);
+        members.add(member2);
 
         List<String> names = members.getMembersName();
         assertThat(names.size(), is(2));

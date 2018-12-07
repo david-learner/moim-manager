@@ -12,7 +12,7 @@ public class Group {
     private long id;
 
     @ManyToOne
-    private User leader;
+    private Member leader;
 
     @Embedded
     @AssociationOverride(name = "members", joinTable = @JoinTable(name = "moim_group_joined_members"))
@@ -28,7 +28,7 @@ public class Group {
     public Group() {
     }
 
-    public Group(User opener, GroupProperties properties) {
+    public Group(Member opener, GroupProperties properties) {
         leader = opener;
         joinedMembers = new Members(opener);
         // TODO joinWaitingMembers는 적정인원으로 대기할 수 있어야 한다
@@ -41,7 +41,7 @@ public class Group {
         return id;
     }
 
-    public User getLeader() {
+    public Member getLeader() {
         return leader;
     }
 
@@ -65,16 +65,16 @@ public class Group {
         return joinWaitingMembers.size();
     }
 
-    public void addMember(User user) {
-        joinedMembers.add(user);
+    public void addMember(Member member) {
+        joinedMembers.add(member);
     }
 
-    public void joinRequestBy(User member) {
+    public void joinRequestBy(Member member) {
         joinWaitingMembers.add(member);
     }
 
-    public boolean matchLeader(User user) {
-        return leader.equals(user);
+    public boolean matchLeader(Member member) {
+        return leader.equals(member);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Group {
                 '}';
     }
 
-    public void accept(User joinWaitingMember) {
+    public void accept(Member joinWaitingMember) {
         // TODO 만약 !ifPresent일 때 NPE를 어떻게 발생시킬 것인가?
         joinWaitingMembers.getMembers().stream().filter(user -> user.equals(joinWaitingMember)).findAny().ifPresent(user -> {
             joinedMembers.add(user);

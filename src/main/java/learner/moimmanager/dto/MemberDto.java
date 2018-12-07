@@ -1,33 +1,33 @@
 package learner.moimmanager.dto;
 
 import learner.moimmanager.domain.Grade;
-import learner.moimmanager.domain.User;
+import learner.moimmanager.domain.Member;
 import learner.moimmanager.security.Encryption;
 
-public class UserDto {
+public class MemberDto {
 
     private String name;
     private String nickname;
     private String password;
     private String email;
 
-    public UserDto() {
+    public MemberDto() {
     }
 
-    public UserDto(String name, String nickname, String password, String email) {
+    public MemberDto(String name, String nickname, String password, String email) {
         this.name = name;
         this.nickname = nickname;
         this.password = password;
         this.email = email;
     }
 
-    public User toUser() {
-        return new User(name, nickname, Encryption.encode(password), email, Grade.NORMAL);
+    public Member toUser() {
+        return new Member(name, nickname, Encryption.encode(password), email, Grade.NORMAL);
     }
 
     @Override
     public String toString() {
-        return "UserDto{" +
+        return "MemberDto{" +
                 "name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +

@@ -4,13 +4,10 @@ import static learner.moimmanager.support.test.DummyData.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
-import learner.moimmanager.domain.Group;
 import learner.moimmanager.repository.GroupRepository;
-import learner.moimmanager.repository.UserRepository;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

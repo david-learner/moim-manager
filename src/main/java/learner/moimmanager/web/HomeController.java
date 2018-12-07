@@ -1,7 +1,5 @@
 package learner.moimmanager.web;
 
-import learner.moimmanager.domain.User;
-import learner.moimmanager.security.LoginUser;
 import learner.moimmanager.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

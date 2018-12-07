@@ -4,10 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNull;
 
-public class LoginUserDtoTest {
+public class LoginMemberDtoTest {
     @Test
     public void create() {
-        LoginUserDto loginUserDto = new LoginUserDto();
-        assertNull(loginUserDto.getEmail());
+        LoginMemberDto loginMemberDto = new LoginMemberDto();
+        assertNull(loginMemberDto.getEmail());
     }
 }
