@@ -104,7 +104,7 @@ public class GroupAcceptanceTest extends AcceptanceTest {
 
         // 모임장 로그인 상태에서 수락 요청 가능
         authTemplate = template.withBasicAuth("learner@hard.com", "password1234");
-        response = authTemplate.getForEntity("/groups/1/joinWaitingMember/1/accept", String.class);
+        response = authTemplate.getForEntity("/groups/1/joinWaitingMembers/1/accept", String.class);
         assertThat(response.getBody().contains("모임장"), is(true));
     }
 
