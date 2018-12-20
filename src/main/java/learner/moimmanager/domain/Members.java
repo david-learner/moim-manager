@@ -48,4 +48,8 @@ public class Members {
     public void remove(Member member) {
         members.remove(member);
     }
+
+    public boolean contains(Member member) {
+        return members.contains(member);
+    }
 }

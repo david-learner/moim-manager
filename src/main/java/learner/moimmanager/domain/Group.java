@@ -1,11 +1,17 @@
 package learner.moimmanager.domain;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Table(name = "moim_group")
 public class Group {
+
+    private static final Logger log =  LoggerFactory.getLogger(Group.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +38,6 @@ public class Group {
         leader = opener;
         joinedMembers = new Members(opener);
         // TODO joinWaitingMembers는 적정인원으로 대기할 수 있어야 한다
-        // TODO 이미 가입 요청한 사람은 가입요청을 보낼 수 없다
         joinWaitingMembers = new Members(opener);
         this.properties = properties;
     }
@@ -70,6 +75,8 @@ public class Group {
     }
 
     public void joinRequestBy(Member member) {
+        // 가입신청중인지 확인하는 로직
+
         joinWaitingMembers.add(member);
     }
 
@@ -93,5 +100,11 @@ public class Group {
             joinedMembers.add(user);
             joinWaitingMembers.remove(user);
         });
+    }
+
+    public void reject(Member member) {
+        log.debug("Reject remove before : " + joinWaitingMembers.toString());
+        joinWaitingMembers.remove(member);
+        log.debug("Reject remove after : " + joinWaitingMembers.toString());
     }
 }

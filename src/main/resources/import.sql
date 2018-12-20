@@ -1,6 +1,6 @@
 INSERT INTO moim_member(email, name, grade, nick_name, password) VALUES('learner@hard.com', '황러너', 'NORMAL','하드러너', '$2a$10$FziYi91Kc8cTGE8PlbLqOuexUC6sBEn.8PCgITs7ScRkToBCeJpl.');
 INSERT INTO moim_member(email, name, grade, nick_name, password) VALUES('sysmuch@hard.com', '서마용', 'NORMAL','모닥불', '$2a$10$FziYi91Kc8cTGE8PlbLqOuexUC6sBEn.8PCgITs7ScRkToBCeJpl.');
-INSERT INTO moim_member(email, name, grade, nick_name, password) VALUES('learner2@hard.com', '황다윗', 'NORMAL','소프트러너', '$2a$10$FziYi91Kc8cTGE8PlbLqOuexUC6sBEn.8PCgITs7ScRkToBCeJpl.');
+INSERT INTO moim_member(email, name, grade, nick_name, password) VALUES('learner2@hard.com', '김다윗', 'NORMAL','소프트러너', '$2a$10$FziYi91Kc8cTGE8PlbLqOuexUC6sBEn.8PCgITs7ScRkToBCeJpl.');
 INSERT INTO moim_member(email, name, grade, nick_name, password) VALUES('learner3@hard.com', '황요셉', 'NORMAL','믹스러너', '$2a$10$FziYi91Kc8cTGE8PlbLqOuexUC6sBEn.8PCgITs7ScRkToBCeJpl.');
 
 INSERT INTO moim_group(category, connect_type, name, region, leader_id) VALUE('독서','offline','부경나비','부산광역시',1);

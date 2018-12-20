@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("groups")
 public class GroupController {
-    private static final Logger log =  LoggerFactory.getLogger(GroupController.class);
+    private static final Logger log = LoggerFactory.getLogger(GroupController.class);
 
     @Resource(name = "groupService")
     private GroupService groupService;
@@ -37,18 +38,24 @@ public class GroupController {
     @GetMapping("/{id}/join")
     public String join(@LoginUser Member loginMember, @PathVariable Long id) {
         groupService.join(loginMember, id);
-        return "redirect:/";
+        return "redirect:/groups/" + id;
     }
 
     @GetMapping("/{id}")
-    public String home(@PathVariable Long id, Model model) {
+    public String home(@PathVariable Long id, Model model, HttpSession session) {
         model.addAttribute("group", groupService.findOne(id));
         return "/group/home";
     }
 
     @GetMapping("/{groupId}/joinWaitingMember/{memberId}/accept")
-    public String accept(@LoginUser Member acceptor, @PathVariable Long groupId, @PathVariable Long memberId) {
-        groupService.accept(acceptor, groupId, memberId);
-        return "redirect:/groups/"+groupId;
+    public String accept(@LoginUser Member leader, @PathVariable Long groupId, @PathVariable Long memberId) {
+        groupService.accept(leader, groupId, memberId);
+        return "redirect:/groups/" + groupId;
+    }
+
+    @GetMapping("/{groupId}/joinWaitingMembers/{memberId}/reject")
+    public String reject(@LoginUser Member leader, @PathVariable Long groupId, @PathVariable Long memberId) {
+        groupService.reject(leader, groupId, memberId);
+        return "redirect:/groups/" + groupId;
     }
 }
