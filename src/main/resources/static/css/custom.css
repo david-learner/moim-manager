@@ -37,3 +37,11 @@
 a:hover {
     color: #fff;
 }
+
+#group-nav-bar {
+    margin-top: 30px;
+}
+
+#group-content {
+    margin-top: 30px;
+}

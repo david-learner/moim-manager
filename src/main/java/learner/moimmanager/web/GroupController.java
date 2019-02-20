@@ -47,6 +47,21 @@ public class GroupController {
         return "/group/home";
     }
 
+    @GetMapping("/{id}/assignment")
+    public String assignment(@PathVariable Long id, Model model, HttpSession session) {
+        return "/assignment/assignment";
+    }
+
+    @GetMapping("/{id}/assignment/create")
+    public String create(@PathVariable Long id, Model model, HttpSession session) {
+        return "/assignment/createForm";
+    }
+
+    @GetMapping("/{id}/admin")
+    public String admin(@PathVariable Long id, Model model, HttpSession session) {
+        return "/group/admin";
+    }
+
     @GetMapping("/{groupId}/joinWaitingMembers/{memberId}/accept")
     public String accept(@LoginUser Member leader, @PathVariable Long groupId, @PathVariable Long memberId) {
         groupService.accept(leader, groupId, memberId);

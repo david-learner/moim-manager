@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> common/header}}
+<body>
+{{> common/navbar}}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col" id="group-nav-bar">
+            <ul>
+                <li><a href="/groups/{{id}}">home</a></li>
+                <li><a href="/groups/{{id}}/assignment">assignment</a></li>
+                <li><a href="/groups/{{id}}/admin">admin</a></li>
+            </ul>
+        </nav>
+        <div class="col-9" id="group-content">
+            <form action="/groups/{id}/assignment/create">
+                <div><input type="text" name="title" placeholder="과제명"/></div>
+                <div><textarea name="content" cols="30" rows="10"></textarea></div>
+                <div><input type="file"></div>
+                <div><input type="submit" value="제출"></div>
+            </form>
+        </div>
+    </div>
+</div>
+{{> common/footer}}
+</body>
+</html>

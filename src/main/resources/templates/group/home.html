@@ -3,32 +3,43 @@
 {{> common/header}}
 <body>
 {{> common/navbar}}
-<div class="container">
-    <div class="justify-content-center p-3">
-        <div><p>모임이름 : {{group.name}}</p></div>
-        <div><p>모임장 : {{group.leader.name}}</p></div>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col" id="group-nav-bar">
+            <ul>
+                <li><a href="/groups/{{id}}">home</a></li>
+                <li><a href="/groups/{{id}}/assignment">assignment</a></li>
+                <li><a href="/groups/{{id}}/admin">admin</a></li>
+            </ul>
+        </nav>
+        <div class="col-9" id="group-content">
+            <div class="justify-content-center p-3">
+                <div><p>모임이름 : {{group.name}}</p></div>
+                <div><p>모임장 : {{group.leader.name}}</p></div>
 
-        <div><p>회원 :
-            {{#group.joinedMembersName}}
-            {{this}}&nbsp;
-            {{/group.joinedMembersName}}
-        </p></div>
+                <div><p>회원 :
+                    {{#group.joinedMembersName}}
+                    {{this}}&nbsp;
+                    {{/group.joinedMembersName}}
+                </p></div>
 
-        <div><p>가입대기 :
-            {{#group.joinWaitingMembers.members}}
-            <!-- TODO 가입수락했을 때 요청보낼 url 만들고 해당 사항 처리하기 -->
-            <p>{{name}}
-                <a href="/groups/{{group.id}}/joinWaitingMember/{{id}}/accept">가입수락</a>
-            <a href="/groups/{{group.id}}/joinWaitingMembers/{{id}}/reject">가입거절</a>
-            </p>&nbsp;
-            {{/group.joinWaitingMembers.members}}
-        </p></div>
+                <div><p>가입대기 :
+                    {{#group.joinWaitingMembers.members}}
+                    <!-- TODO 가입수락했을 때 요청보낼 url 만들고 해당 사항 처리하기 -->
+                    <p>{{name}}
+                        <a href="/groups/{{group.id}}/joinWaitingMember/{{id}}/accept">가입수락</a>
+                        <a href="/groups/{{group.id}}/joinWaitingMembers/{{id}}/reject">가입거절</a>
+                    </p>&nbsp;
+                    {{/group.joinWaitingMembers.members}}
+                    </p></div>
 
-        <div>
-            <a href="/groups/{{group.id}}/join" class="btn btn-primary">가입요청</a>
+                <div>
+                    <a href="/groups/{{group.id}}/join" class="btn btn-primary">가입요청</a>
+                </div>
+            </div>
         </div>
     </div>
+    {{> common/footer}}
 </div>
-{{> common/footer}}
 </body>
 </html>
