@@ -15,3 +15,4 @@ INSERT INTO miom_member_opened_groups(user_id, groups_id) VALUES (3, 1);
 -- INSERT INTO moim_group_joined_members(group_id, members_id) VALUE(1, 2);
 -- INSERT INTO moim_group_join_waiting_members(group_id, members_id) VALUE(1, 4);
 
+-- INSERT INTO assignment(writer_id, title, content, startdate, enddate) VALUES (1, '과제1 - WAS 조사', 'WAS의 종류를 조사하세요', '2019-02-27 10:01:00', '2019-02-28 11:11:00');
