@@ -1,13 +1,10 @@
 package learner.moimmanager.domain;
 
-import org.apache.tomcat.jni.Local;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
+@Entity
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,72 +24,92 @@ public class Assignment {
     @Column(nullable = false)
     private LocalDateTime enddate;
 
-    public static class Builder {
-        private Long id;
-        private Long writerId;
-        private String title;
-        private String content;
-        private int submittedCount;
-        private Byte[] attachment;
-        private LocalDateTime startdate;
-        private LocalDateTime enddate;
-
-        public Builder builder() {
-            return this;
-        }
-
-        public Builder id(Long val) {
-            id = val;
-            return this;
-        }
-
-        public Builder writerId(Long val) {
-            writerId = val;
-            return this;
-        }
-
-        public Builder title(String val) {
-            title = val;
-            return this;
-        }
-
-        public Builder content(String val) {
-            content = val;
-            return this;
-        }
-
-        public Builder submittedCount(int val) {
-            submittedCount = val;
-            return this;
-        }
-
-        public Builder attachment(Byte[] val) {
-            attachment = val;
-            return this;
-        }
-
-        public Builder startdate(LocalDateTime val) {
-            startdate = val;
-            return this;
-        }
-
-        public Builder enddate(LocalDateTime val) {
-            enddate = val;
-            return this;
-        }
-
-        public Assignment build() {
-            return new Assignment(this);
-        }
+    public Assignment() {
     }
 
-    public Assignment(Builder builder) {
-        this.writerId = builder.writerId;
-        this.title = builder.title;
-        this.content = builder.content;
-        this.submittedCount = builder.submittedCount;
-        this.attachment = builder.attachment;
-        this.startdate = builder.startdate;
-        this.enddate = builder.enddate;
+    public Assignment(Long writerId, String title, String content, LocalDateTime startdate, LocalDateTime enddate) {
+        this.writerId = writerId;
+        this.title = title;
+        this.content = content;
+        this.startdate = startdate;
+        this.enddate = enddate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setWriterId(Long writerId) {
+        this.writerId = writerId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setSubmittedCount(int submittedCount) {
+        this.submittedCount = submittedCount;
+    }
+
+    public void setAttachment(Byte[] attachment) {
+        this.attachment = attachment;
+    }
+
+    public void setStartdate(LocalDateTime startdate) {
+        this.startdate = startdate;
+    }
+
+    public void setEnddate(LocalDateTime enddate) {
+        this.enddate = enddate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getWriterId() {
+        return writerId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public int getSubmittedCount() {
+        return submittedCount;
+    }
+
+    public Byte[] getAttachment() {
+        return attachment;
+    }
+
+    public LocalDateTime getStartdate() {
+        return startdate;
+    }
+
+    public LocalDateTime getEnddate() {
+        return enddate;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "id=" + id +
+                ", writerId=" + writerId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", submittedCount=" + submittedCount +
+                ", attachment=" + Arrays.toString(attachment) +
+                ", startdate=" + startdate +
+                ", enddate=" + enddate +
+                '}';
     }
 }
